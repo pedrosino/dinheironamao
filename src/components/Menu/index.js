@@ -8,9 +8,9 @@ function Menu() {
         PedroMoney
       </Link>
       <ul className="menu">
-        <li><a href="/">Buscar</a></li>
-        <li><a href="/about">Sobre</a></li>
-        <li><a href="/">Contato</a></li>
+        <li><Link to="/">Buscar</Link></li>
+        <li><Link to="/about">Sobre</Link></li>
+        <li><Link to="/">Contato</Link></li>
       </ul>
     </div>
   );

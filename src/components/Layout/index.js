@@ -19,13 +19,13 @@ const Main = styled.main`
 
 function Layout(props) {
   return(
-    <div className="wrapper">
+    <>
       <Menu />
       <Main>
         {props.children}
       </Main>
       <Footer />
-    </div>
+    </>
   );
 }
 

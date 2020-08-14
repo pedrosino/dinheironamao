@@ -2,17 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from '../src/components/Layout';
+import About from '../src/pages/About';
+import Home from '../src/pages/Home';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
 
 ReactDOM.render(
   <BrowserRouter>

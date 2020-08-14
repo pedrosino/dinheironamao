@@ -1,13 +1,12 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 
-function Home() {
+function About() {
   return(
     <Layout>
-      <div className="box">Rosa</div>
-      <div className="box">Rosa</div>
+      <h2>About</h2>
     </Layout>
   );
 }
 
-export default Home;
+export default About;
