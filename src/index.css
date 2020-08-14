@@ -11,3 +11,132 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+  background-color: #F0F0F0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Cabeçalho com menu */
+.header {
+  height: 80px;
+  background: #2277c2;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Flex box */
+  /* Display DENTRO da div */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*          */
+  padding: 0 2%;
+  border-bottom: 2px solid #0080f0;
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 50px;
+    font-size: 18px;
+  }
+}
+
+.menu {
+  display: flex;
+  font-size: 14px;
+}
+
+.menu li {
+  padding: 8px;
+}
+
+@media (max-width: 600px) {
+  .menu li {
+    display: none;
+  }
+}
+
+/* Conteúdo principal */
+.box {
+  flex: 1;
+  background-color: #E0EAEF;
+  border-radius: 5px;
+  margin: 10px 0 0 10px;
+  padding: 5px;
+}
+
+.box img {
+  max-width: 100%;
+}
+
+.box p {
+  padding: 2px;
+  margin-bottom: 5px;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.box-saldo {
+  border-bottom: 1px solid #2277c2;
+  margin-bottom: 20px;
+}
+
+.tabela-ultimas {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+.tabela-ultimas th, td {
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+/* Rodapé */
+.footer {
+  height: 40px;
+  background: #2277c2;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    font-size: 12px;
+  }
+}
