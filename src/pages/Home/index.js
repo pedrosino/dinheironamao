@@ -35,6 +35,9 @@ function Home() {
         <p class="title">Linha do tempo</p>
         <img src="line.png" alt="line" />
       </div>
+      <div className="box">
+        <p class="title">Categorias</p>
+      </div>
     </Layout>
   );
 }

@@ -4,6 +4,7 @@ import './index.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import About from '../src/pages/About';
 import Home from '../src/pages/Home';
+import NovaDespesa from '../src/pages/despesa/nova';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -11,6 +12,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       {/*<Route path="/relatorio" component={Relatorio} />*/}
+      <Route path="/despesa/nova" component={NovaDespesa} />
       <Route path="/about" component={About} />
       <Route path="/" component={Home} exact />
       <Route component={() => (<div>Não encontrado</div>)} />

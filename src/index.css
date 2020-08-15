@@ -23,8 +23,23 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-#root {
-  background-color: #F0F0F0;
+:root {
+  --primary: #2A7AE4;
+  --black: #000000;
+  --blackLighter: #9E9E9E;
+  --grayLight: #F5F5F5;
+  --grayMedium: #e5e5e5; 
+  --white: #FFFFFF;
+  --frontEnd: #6BD1FF;
+  --backEnd: #00C86F;
+
+  --lightGray: #F0F0F0;
+  --mediumBlue: #2277c2;
+  --lightBlue: #E0EAEF; 
+}
+
+.wrapper {
+  background-color: var(--lightGray);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -43,7 +58,7 @@ a {
 /* Cabeçalho com menu */
 .header {
   height: 80px;
-  background: #2277c2;
+  background: var(--mediumBlue);
   color: white;
   text-align: center;
   font-size: 24px;
@@ -93,7 +108,9 @@ a {
 }
 
 .box img {
-  max-width: 100%;
+  max-width: 90%;
+  display: block;
+  margin: 0 auto;
 }
 
 .box p {
@@ -102,12 +119,13 @@ a {
 }
 
 .title {
+  font-size: 20px;
   text-align: center;
   font-weight: bold;
 }
 
 .box-saldo {
-  border-bottom: 1px solid #2277c2;
+  border-bottom: 1px solid var(--mediumBlue);
   margin-bottom: 20px;
 }
 
@@ -125,7 +143,7 @@ a {
 /* Rodapé */
 .footer {
   height: 40px;
-  background: #2277c2;
+  background: var(--mediumBlue);
   color: white;
   text-align: center;
   font-size: 16px;
