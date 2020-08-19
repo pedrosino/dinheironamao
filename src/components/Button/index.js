@@ -13,8 +13,12 @@ const Button = styled.button`
   outline: none;
   border-radius: 5px;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   transition: opacity .3s;
+
+  ${({ cor }) => `
+    background-color: ${cor};
+  `}
 
   &:hover,
   &:focus {

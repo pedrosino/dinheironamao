@@ -24,18 +24,10 @@ body {
 }
 
 :root {
-  --primary: #2A7AE4;
-  --black: #000000;
-  --blackLighter: #9E9E9E;
-  --grayLight: #F5F5F5;
-  --grayMedium: #e5e5e5; 
-  --white: #FFFFFF;
-  --frontEnd: #6BD1FF;
-  --backEnd: #00C86F;
-
   --lightGray: #F0F0F0;
   --mediumBlue: #2277c2;
-  --lightBlue: #E0EAEF; 
+  --lightBlue: #E0EAEF;
+  --orange: #ec7c18;
 }
 
 .wrapper {
