@@ -40,8 +40,8 @@ const Input = styled.input`
   border-top: 4px solid transparent;
   border-bottom: 4px solid #53585D;
   
-  padding: 16px 16px;
-  margin-bottom: 45px;
+  padding: 16px 16px 0 16px;
+  margin-bottom: 25px;
   
   resize: none;
   border-radius: 4px;
@@ -52,12 +52,12 @@ const Input = styled.input`
     background-color: white;
   }
   &:focus:not([type='color']) + ${Label.Text} {
-    transform: scale(.6) translateY(-10px);
+    transform: scale(.7) translateY(-10px);
   }
 
   ${({ hasValue }) => hasValue && css`
     &:not([type='color']) + ${Label.Text} {
-      transform: scale(.6) translateY(-10px);
+      transform: scale(.7) translateY(-10px);
     }
   `}
 `;

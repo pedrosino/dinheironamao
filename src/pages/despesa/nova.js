@@ -12,6 +12,9 @@ function Nova() {
     data: getCurrentDate("/"),
     descricao: '',
     valor: '',
+    local: '',
+    observacao: '',
+    categoria: ''
   };
 
   const { handleChange, values, clearForm } = useForm(initialValues);
@@ -51,6 +54,28 @@ function Nova() {
             name="valor"
             value={values.valor}
             onChange={handleChange}
+          />
+          <FormField
+            label="Local"
+            type="text"
+            name="local"
+            value={values.local}
+            onChange={handleChange}
+          />
+          <FormField
+            label="Observação"
+            type="text"
+            name="observacao"
+            value={values.observacao}
+            onChange={handleChange}
+          />
+          <FormField
+            label="Categoria"
+            type="text"
+            name="categoria"
+            value={values.categoria}
+            onChange={handleChange}
+            as="select"
           />
           <Button type="submit">
             Salvar
