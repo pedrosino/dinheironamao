@@ -10,6 +10,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: row;
   margin: 0 10px 10px 0;
+  flex-wrap: wrap;
 
   @media (max-width: 600px) {
     padding-top: 50px;

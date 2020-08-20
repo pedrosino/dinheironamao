@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Layout from '../../components/Layout';
+import Button from '../../components/Button';
 
 function Home() {
   return(
@@ -34,7 +36,11 @@ function Home() {
             </tbody>
           </table>
         </div>
+        <Button as={Link} to="/despesa/nova" cor={'var(--green)'}>
+          Nova
+        </Button>
       </div>
+
       <div className="box">
         <p className="title">Linha do tempo</p>
         <img src="line.png" alt="line" />

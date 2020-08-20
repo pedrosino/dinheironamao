@@ -28,6 +28,9 @@ body {
   --mediumBlue: #2277c2;
   --lightBlue: #E0EAEF;
   --orange: #ec7c18;
+  --green: #00a030;
+  --lightGreen: #abfdD0;
+  --darkGreen: #005102;
 }
 
 .wrapper {
@@ -91,6 +94,17 @@ a {
 }
 
 /* Conteúdo principal */
+.message {
+  height: 40px;
+  margin: 10px 0 10px 10px;
+  background-color: var(--lightGreen);
+  color: var(--darkGreen);
+  font-size: 12pt;
+  flex: 1 100%;
+  text-align: center;
+  line-height: 40px;
+}
+
 .box {
   flex: 1;
   background-color: #E0EAEF;
