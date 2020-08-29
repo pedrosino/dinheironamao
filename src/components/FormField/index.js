@@ -121,6 +121,10 @@ function FormField({
                 </option>
               ))
             }
+            name={name}
+            hasValue={hasValue}
+            value={value}
+            onChange={onChange}
           </Select>
         : <Input
           as={tag}
