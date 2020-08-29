@@ -71,11 +71,12 @@ function Nova() {
           />
           <FormField
             label="Categoria"
-            type="text"
+            type="select"
             name="categoria"
             value={values.categoria}
             onChange={handleChange}
             as="select"
+            options={['Alimentação', 'Mercado', 'Moradia']}
           />
           <Button type="submit">
             Salvar

@@ -69,6 +69,7 @@ a {
   /*          */
   padding: 0 2%;
   border-bottom: 2px solid #0080f0;
+  z-index: 1;
 }
 
 @media (max-width: 600px) {
@@ -143,7 +144,8 @@ a {
 
 .tabela-ultimas th, td {
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
+  padding: 2px;
 }
 
 /* Rodapé */
