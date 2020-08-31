@@ -1,0 +1,50 @@
+/* Cabeçalho com menu */
+.header {
+  height: 80px;
+  background: var(--mediumBlue);
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Flex box */
+  /* Display DENTRO da div */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*          */
+  padding: 0 2%;
+  border-bottom: 2px solid #0080f0;
+  z-index: 1;
+}
+
+.menu {
+  display: flex;
+  font-size: 14px;
+}
+
+.menu li {
+  padding: 8px;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 22px;
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .menu li {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
