@@ -4,6 +4,15 @@ import './menu.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+function toggleMenu() {
+  const menu = document.querySelector('.menu');
+  if (menu.classList.contains("menu_open")) {
+    menu.classList.remove("menu_open");
+  } else {
+    menu.classList.add("menu_open");
+  }
+}
+
 function Menu() {
   return(
     <div className="header">
@@ -11,13 +20,11 @@ function Menu() {
         PedroMoney
       </Link>
       <div className="menu-wrapper">
-        <div class="menu-icon">
-          <FontAwesomeIcon icon={faBars} />
-        </div>
-        <ul className="menu">
-          <li><Link to="/">Buscar</Link></li>
-          <li><Link to="/about">Sobre</Link></li>
-          <li><Link to="/">Contato</Link></li>
+        <li className="menu-icon" onClick={toggleMenu}><FontAwesomeIcon icon={faBars} /></li>
+        <ul id="menu" className="menu">
+          <li className="menu-item"><Link to="/">Buscar</Link></li>
+          <li className="menu-item"><Link to="/about">Sobre</Link></li>
+          <li className="menu-item"><Link to="/">Contato</Link></li>
         </ul>
       </div>
     </div>
