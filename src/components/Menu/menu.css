@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .header {
     height: 50px;
     font-size: 18px;
