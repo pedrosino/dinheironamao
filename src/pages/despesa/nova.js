@@ -5,6 +5,8 @@ import Button from '../../components/Button';
 import FormField from '../../components/FormField';
 import useForm from '../../hooks/useForm';
 import getCurrentDate from '../../utils/date';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 function Nova() {
   const history = useHistory();
@@ -77,6 +79,11 @@ function Nova() {
             onChange={handleChange}
             as="select"
             options={['Alimentação', 'Mercado', 'Moradia']}
+          />
+          <Autocomplete
+            id="combo-box-demo"
+            options={['Alimentação','Mercado', 'Moradia']}
+            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
           />
           <Button type="submit">
             Salvar
