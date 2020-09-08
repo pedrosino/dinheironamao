@@ -1,12 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import ReactSelect from 'react-select';
 
 const FormFieldWrapper = styled.div`
   position: relative;
-  textarea {
-    min-height: 150px;
-  }
 `;
 
 const Label = styled.label``;
@@ -28,7 +26,7 @@ Label.Text = styled.span`
   transition: .1s ease-in-out;
 `;
 
-const Input = styled.input`
+const Select = styled.select`
   background: var(--lightGray);
   color: black;
   display: block;
@@ -63,26 +61,32 @@ const Input = styled.input`
   `}
 `;
 
-function FormField({
-  label, type, name, value, onChange,
+function FormSelect({
+  label, name, value, onChange, options,
 }) {
-  const tag = type === 'select' ? 'select' : 'input';
 
   const hasValue = Boolean(value.length);
-  
+
   return (
     <FormFieldWrapper>
       <Label
         htmlFor={name}
       >
-        <Input
-          as={tag}
+        <Select
           name={name}
-          type={type}
-          hasValue={hasValue}
-          value={value}
           onChange={onChange}
-        />
+          value={value}
+          hasValue={hasValue}
+        >
+          
+          {
+            options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))
+          }
+        </Select>
         <Label.Text>
           {label}
           :
@@ -92,17 +96,17 @@ function FormField({
   );
 }
 
-FormField.propTypes = {
+FormSelect.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string,
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string),
 };
 
-FormField.defaultProps = {
-  type: 'text',
+FormSelect.defaultProps = {
   value: '',
+  options: [],
 };
 
-export default FormField;
+export default FormSelect;

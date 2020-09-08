@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import FormField from '../../components/FormField';
-import useForm from '../../hooks/useForm';
+import FormSelect from '../../components/FormSelect';
 import getCurrentDate from '../../utils/date';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -19,9 +19,34 @@ function Nova() {
     categoria: ''
   };
 
-  const { handleChange, values, clearForm } = useForm(initialValues);
+  //const { handleChange, values, clearForm } = useForm(initialValues);
 
-  /*const [dados, setDados] = useState([]);*/
+  const [values, setValues] = useState(initialValues);
+
+  function setValue(key, value) {
+    // key describes the field
+    setValues({
+      ...values,
+      [key]: value, //transforma key em um nome de propriedade
+    })
+  }
+
+  function handleChange(info) {
+    // verificar o que veio
+    const {name, value} = info.target;
+    setValue(name, value);
+  }
+
+  function clearForm() {
+    setValues(initialValues);
+  }
+
+  const options = [
+    { value: '', label: '' },
+    { value: 'alimentacao', label: 'Alimentação' },
+    { value: 'mercado', label: 'Mercado' },
+    { value: 'moradia', label: 'Moradia' },
+  ];
 
   return(
     <Layout>
@@ -33,6 +58,7 @@ function Nova() {
           ...dados,
           values,
         ]);*/
+        console.log(values);
         clearForm();
         history.push('/');
       }}>
@@ -71,20 +97,20 @@ function Nova() {
             value={values.observacao}
             onChange={handleChange}
           />
-          <FormField
+          <FormSelect
             label="Categoria"
-            type="select"
             name="categoria"
             value={values.categoria}
             onChange={handleChange}
-            as="select"
-            options={['Alimentação', 'Mercado', 'Moradia']}
+            options={options}
           />
-          <Autocomplete
+
+          {/*<Autocomplete
             id="combo-box-demo"
             options={['Alimentação','Mercado', 'Moradia']}
             renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-          />
+          />*/}
+
           <Button type="submit">
             Salvar
           </Button>
