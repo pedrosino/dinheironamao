@@ -7,7 +7,7 @@ function getCurrentDate(separator=''){
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
   
-  return `${day}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
+  return `${day<10?`0${day}`:`${day}`}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
 }
 
 export default getCurrentDate;

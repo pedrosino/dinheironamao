@@ -50,7 +50,7 @@ function Nova() {
 
   return(
     <Layout>
-      <div className="box">
+      <div className="box despesa">
         <p className="title">Nova despesa</p>
         <form className="form-nova-despesa" onSubmit={function handleSubmit(info) {
         info.preventDefault();

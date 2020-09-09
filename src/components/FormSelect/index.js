@@ -5,6 +5,9 @@ import ReactSelect from 'react-select';
 
 const FormFieldWrapper = styled.div`
   position: relative;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Label = styled.label``;
@@ -27,7 +30,7 @@ Label.Text = styled.span`
 `;
 
 const Select = styled.select`
-  background: var(--lightGray);
+  background: white;
   color: black;
   display: block;
   width: 100%;

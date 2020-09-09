@@ -7,6 +7,9 @@ const FormFieldWrapper = styled.div`
   textarea {
     min-height: 150px;
   }
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Label = styled.label``;
@@ -29,12 +32,13 @@ Label.Text = styled.span`
 `;
 
 const Input = styled.input`
-  background: var(--lightGray);
+  background: white;
   color: black;
   display: block;
   width: 100%;
   height: 57px;
   font-size: 18px;
+  max-width: 500px;
   
   outline: 0;
   border: 0;

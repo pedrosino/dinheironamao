@@ -27,10 +27,11 @@ body {
   --lightGray: #F0F0F0;
   --mediumBlue: #2277c2;
   --lightBlue: #E0EAEF;
-  --orange: #ec7c18;
-  --green: #00a030;
-  --lightGreen: #abfdD0;
+  --orange: #EC7C18;
+  --green: #00A030;
+  --lightGreen: #E6FFC7;
   --darkGreen: #005102;
+  --lightRed: #FFE7D4;
 }
 
 .wrapper {
@@ -90,6 +91,14 @@ a {
 .box-saldo {
   border-bottom: 1px solid var(--mediumBlue);
   margin-bottom: 20px;
+}
+
+.despesa {
+  background-color: var(--lightRed);
+}
+
+.entrada {
+  background-color: var(--lightGreen);
 }
 
 .tabela-ultimas {
