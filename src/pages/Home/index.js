@@ -1,12 +1,45 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect  } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
+import { dateFormat } from '../../utils/date';
+import moneyFormat from '../../utils/money';
 
 function Home() {
+  const [despesas, setDespesas] = useState([]);
+
+  function getDespesas() {
+    return fetch('http://localhost:3001/despesas')
+      .then(async (serverResponse) => {
+        if (serverResponse.ok) {
+          const response = await serverResponse.json();
+          return response;
+        }
+        throw new Error('Não foi possível obter os dados');
+      });
+  }
+
+  useEffect(() => {      
+      /*fetch('http://localhost:3001/despesas')
+        .then(response => response.json())
+        .then((todas) => {
+          console.log('Todas', todas);
+          setDespesas(todas);
+        })
+        .catch(err => console.log(err));*/
+
+      getDespesas()
+        .then((todas) => {
+          setDespesas(todas);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }, []);
+
   return(
     <Layout>
-      <div className="box">
+      {/*<div className="box">
       <div className="box-saldo">
           <p className="title">Agosto/2020</p>
           <p className="gasto">Total gasto: R$ 1.200,00</p>
@@ -47,7 +80,32 @@ function Home() {
       </div>
       <div className="box">
         <p className="title">Categorias</p>
+  </div>*/ }
+
+      {despesas.length === 0 && (<div>Loading...</div>)}
+      <div className="box">
+        <div className="ultimas">
+        <p className="title">Últimas despesas</p>
+          <table className="tabela-ultimas">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {despesas.map((despesa, index) => (
+                <tr key={index}><td>{dateFormat(despesa.data, 'short')}</td><td>{despesa.descricao}</td><td>{moneyFormat(despesa.valor)}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <Button as={Link} to="/despesa/nova" cor={'var(--green)'}>
+          Nova
+        </Button>
       </div>
+      <div className="box">Oi</div>
     </Layout>
   );
 }

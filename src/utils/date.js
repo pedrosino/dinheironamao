@@ -10,4 +10,13 @@ function getCurrentDate(separator=''){
   return `${day<10?`0${day}`:`${day}`}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
 }
 
-export default getCurrentDate;
+function dateFormat(input, format) {
+  let parts = input.split('-');
+  
+  return `${parts[2].split('T')[0]}/${parts[1]}${(format === 'long') ? `/${parts[0]}` : ''}`;
+}
+
+export {
+  getCurrentDate, 
+  dateFormat,
+};
