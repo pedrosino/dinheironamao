@@ -96,7 +96,7 @@ function Home() {
             </thead>
             <tbody>
               {despesas.map((despesa, index) => (
-                <tr key={index}><td>{dateFormat(despesa.data, 'short')}</td><td>{despesa.descricao}</td><td>{moneyFormat(despesa.valor)}</td></tr>
+                <tr key={index}><td>{dateFormat(despesa.data.substring(0,10), 'short')}</td><td>{despesa.descricao}</td><td>{moneyFormat(despesa.valor)}</td></tr>
               ))}
             </tbody>
           </table>
