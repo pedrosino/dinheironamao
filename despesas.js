@@ -1,11 +1,12 @@
-const { json } = require('express');
-
 // Busca todas
 const getTodasDespesas = (req, res, db) => {
   /*const url = String(req.url);
   const table = url.replace(/\\|\//g,'');*/
-  db.select('*').from('despesas').orderBy('data')
-    .then(items => {
+  ////db.select('*').from('despesas').orderBy('data')
+  db('despesas')
+  .join('categorias', 'despesas.categoria_id', '=', 'categorias.id')
+  .select('despesas.data', 'despesas.valor', 'despesas.descricao', 'categorias.nome').orderBy('despesas.data')
+  .then(items => {
       if(items.length){
         res.json(items)
       } else {

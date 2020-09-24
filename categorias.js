@@ -1,5 +1,3 @@
-const { json } = require('express');
-
 // Busca todas
 const getTodasCategorias = (req, res, db) => {
   /*const url = String(req.url);
