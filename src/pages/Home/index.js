@@ -94,7 +94,7 @@ function Home() {
           </div>
 */}
           {despesas.map((despesa, index) => (
-                <div className="linha">
+                <div className="linha" key={index}>
                   <div className="data">{dateFormat(despesa.data.substring(0,10), 'short')}</div>
                   <div className="principal">
                     <span>{despesa.descricao}</span>
