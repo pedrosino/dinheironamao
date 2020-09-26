@@ -1,5 +1,5 @@
 function moneyFormat(input) {
-  return input.replace('.', ',');
+  return "R$ " + input.replace('.', ',');
 }
 
 export default moneyFormat;

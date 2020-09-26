@@ -63,8 +63,16 @@ a {
   line-height: 40px;
 }
 
-.box {
+.box-small {
   flex: 1;
+  background-color: #E0EAEF;
+  border-radius: 5px;
+  margin: 10px 0 0 10px;
+  padding: 5px;
+}
+
+.box {
+  flex: 2;
   background-color: #E0EAEF;
   border-radius: 5px;
   margin: 10px 0 0 10px;

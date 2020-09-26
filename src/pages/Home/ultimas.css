@@ -1,0 +1,50 @@
+.linha {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0px 5px 0px;
+  border-bottom: 2px solid rgba(34, 119, 194, 0.2);
+}
+
+.linha div {
+  display: inline-block;
+  padding: 2px;
+}
+
+.data {
+  /*flex: 0 0 15%;*/
+  margin-right: 10px;
+}
+
+.principal {
+  flex: 1;
+  text-align: left;
+  position: relative;
+}
+
+.categoria {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  padding: 2px;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+@media (max-width: 800px) {
+  .principal span {
+    display: block;
+  }
+
+  .categoria {
+    width: max-content;
+    position: relative;
+    float: right;
+  }
+}
+
+.valor {
+  /*flex: 0 0 20%;*/
+  min-width: 90px;
+  text-align: right;
+}
