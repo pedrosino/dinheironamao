@@ -9,8 +9,14 @@ import './ultimas.css';
 function Home() {
   const [despesas, setDespesas] = useState([]);
 
+  const URL_BACKEND = window.location.hostname.includes('localhost')
+  ? 'http://localhost:3001'
+  : 'https://pedroflix.herokuapp.com';
+
+  console.log(URL_BACKEND);
+
   function getDespesas() {
-    return fetch('http://localhost:3001/despesas')
+    return fetch(`${URL_BACKEND}/despesas`)
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
           const response = await serverResponse.json();
