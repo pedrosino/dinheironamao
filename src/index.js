@@ -5,7 +5,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import About from '../src/pages/About';
 import Home from '../src/pages/Home';
 import NovaDespesa from '../src/pages/despesa/nova';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
