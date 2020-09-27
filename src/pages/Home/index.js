@@ -98,7 +98,7 @@ function Home() {
                   <div className="data">{dateFormat(despesa.data.substring(0,10), 'short')}</div>
                   <div className="principal">
                     <span>{despesa.descricao}</span>
-                    <span className="categoria" style={{background: `#${despesa.cor}`}}>{despesa.nome}</span></div>
+                    <span className="categoria" style={{background: `#${despesa.cor ? despesa.cor : "ddd"}`}}>{despesa.nome}</span></div>
                   <div className="valor">{moneyFormat(despesa.valor)}</div>
                 </div>
               ))}

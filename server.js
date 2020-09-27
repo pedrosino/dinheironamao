@@ -25,16 +25,16 @@ server.use(cors(corsOptions))
 server.use(bodyParser.json())
 
 // db Connection w/ Heroku
-// const db = require('knex')({
-//   client: 'pg',
-//   connection: {
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: true,
-//   }
-// });
+const db = require('knex')({
+  client: 'pg',
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  }
+});
 
 // db Connection w/ localhost
-var db = require('knex')({
+/*var db = require('knex')({
   client: 'pg',
   connection: {
     host : '127.0.0.1',
@@ -42,7 +42,7 @@ var db = require('knex')({
     password : 'root',
     database : 'money'
   }
-});
+});*/
 
 const despesas = require('./despesas');
 const categorias = require('./categorias');
