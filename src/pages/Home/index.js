@@ -11,7 +11,7 @@ function Home() {
 
   const URL_BACKEND = window.location.hostname.includes('localhost')
   ? 'http://localhost:3001'
-  : 'https://pedroflix.herokuapp.com';
+  : 'https://pedromoney.herokuapp.com';
 
   console.log(URL_BACKEND);
 
