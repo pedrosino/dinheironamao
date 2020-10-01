@@ -44,6 +44,10 @@ const db = require('knex')({
   }
 });*/
 
+if (process.env.NODE_ENV === 'production') {
+	server.use(express.static('client/build'));
+}
+
 const despesas = require('./despesas');
 const categorias = require('./categorias');
 
