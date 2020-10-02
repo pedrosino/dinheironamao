@@ -1,6 +1,7 @@
 const express = require('express');
 const server = express();
 const port = process.env.PORT || 3001;
+const path = require('path');
 
 
 
@@ -46,8 +47,10 @@ const db = require('knex')({
   }
 });*/
 
+const staticFilesPath = path.resolve(__dirname, `./build`);
+
 if (process.env.NODE_ENV === 'production') {
-	server.use(express.static('client/build'));
+	server.use(express.static(staticFilesPath));
 }
 
 const despesas = require('./despesas');
