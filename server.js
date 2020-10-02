@@ -47,10 +47,11 @@ const db = require('knex')({
   }
 });*/
 
+// Thanks Jonatan
 const staticFilesPath = path.resolve(__dirname, `./build`);
 
 if (process.env.NODE_ENV === 'production') {
-	server.use(express.static(staticFilesPath));
+  server.use(express.static(staticFilesPath));
 }
 
 const despesas = require('./despesas');
