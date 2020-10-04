@@ -41,13 +41,6 @@ function Nova() {
     setValues(initialValues);
   }
 
-  /*const options = [
-    { value: '', label: '' },
-    { value: 'alimentacao', label: 'Alimentação' },
-    { value: 'mercado', label: 'Mercado' },
-    { value: 'moradia', label: 'Moradia' },
-  ];*/
-
   // Busca categorias
   const [categorias, setCategorias] = useState([]);
 
