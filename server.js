@@ -25,19 +25,8 @@ const corsOptions = {
 server.use(cors(corsOptions))
 server.use(bodyParser.json())
 
-// db Connection w/ Heroku
-const db = require('knex')({
-  client: 'pg',
-  connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }
-  }
-});
-
 // db Connection w/ localhost
-/*var db = require('knex')({
+let db = require('knex')({
   client: 'pg',
   connection: {
     host : '127.0.0.1',
@@ -45,7 +34,20 @@ const db = require('knex')({
     password : 'root',
     database : 'money'
   }
-});*/
+});
+
+if (process.env.NODE_ENV === 'production') {
+  // db Connection w/ Heroku
+  db = require('knex')({
+    client: 'pg',
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
+  });
+}
 
 // Thanks Jonatan
 const staticFilesPath = path.resolve(__dirname, `./build`);
@@ -100,7 +102,6 @@ server.get('/all/:id', (req, res) => {
     res.status(400).send(error.message);
   })
 })
-
 
 //-----------------------------------------//
 

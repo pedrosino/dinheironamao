@@ -83,8 +83,8 @@ function FormSelect({
           
           {
             options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+              <option key={option.id} value={option.nome}>
+                {option.nome}
               </option>
             ))
           }

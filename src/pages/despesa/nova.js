@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
@@ -41,12 +41,40 @@ function Nova() {
     setValues(initialValues);
   }
 
-  const options = [
+  /*const options = [
     { value: '', label: '' },
     { value: 'alimentacao', label: 'Alimentação' },
     { value: 'mercado', label: 'Mercado' },
     { value: 'moradia', label: 'Moradia' },
-  ];
+  ];*/
+
+  // Busca categorias
+  const [categorias, setCategorias] = useState([]);
+
+  const URL_BACKEND = window.location.hostname.includes('localhost')
+  ? 'http://localhost:3001'
+  : 'https://pedromoney.herokuapp.com';
+
+  function getCategorias() {
+    return fetch(`${URL_BACKEND}/categorias`)
+      .then(async (serverResponse) => {
+        if (serverResponse.ok) {
+          const response = await serverResponse.json();
+          return response;
+        }
+        throw new Error('Não foi possível obter os dados');
+      });
+  }
+
+  useEffect(() => {      
+    getCategorias()
+      .then((todas) => {
+        setCategorias(todas);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return(
     <Layout>
@@ -102,7 +130,7 @@ function Nova() {
             name="categoria"
             value={values.categoria}
             onChange={handleChange}
-            options={options}
+            options={categorias}
           />
 
           {/*<Autocomplete

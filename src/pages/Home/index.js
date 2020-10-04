@@ -13,8 +13,6 @@ function Home() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  console.log(URL_BACKEND);
-
   function getDespesas() {
     return fetch(`${URL_BACKEND}/despesas`)
       .then(async (serverResponse) => {
@@ -27,21 +25,13 @@ function Home() {
   }
 
   useEffect(() => {      
-      /*fetch('http://localhost:3001/despesas')
-        .then(response => response.json())
-        .then((todas) => {
-          console.log('Todas', todas);
-          setDespesas(todas);
-        })
-        .catch(err => console.log(err));*/
-
-      getDespesas()
-        .then((todas) => {
-          setDespesas(todas);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    getDespesas()
+      .then((todas) => {
+        setDespesas(todas);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return(
