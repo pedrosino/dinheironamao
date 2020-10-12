@@ -36,7 +36,6 @@ function Home() {
 
   return(
     <Layout>
-      {despesas.length === 0 && (<div>Loading...</div>)}
       <div className="box">
         <div className="ultimas">
           <p className="title">Últimas despesas</p>
@@ -46,6 +45,7 @@ function Home() {
             <div className="valor">Valor</div>
           </div>
 */}
+          {despesas.length === 0 && (<div>Loading...</div>)}
           {despesas.map((despesa, index) => (
                 <div className="linha" key={index}>
                   <div className="data">{dateFormat(despesa.data.substring(0,10), 'short')}</div>
@@ -56,11 +56,12 @@ function Home() {
                 </div>
               ))}
         </div>
-      </div>
-      <div className="box">Oi</div>
-      <Button as={Link} to="/despesa/nova" cor={'var(--green)'}>
+        <Button as={Link} to="/despesa/nova" cor={'var(--green)'}>
           Nova
         </Button>
+      </div>
+      <div className="box">Oi</div>
+      
     </Layout>
   );
 }

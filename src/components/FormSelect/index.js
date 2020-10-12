@@ -80,7 +80,7 @@ function FormSelect({
           value={value}
           hasValue={hasValue}
         >
-          
+          <option value=""></option>
           {
             options.map((option) => (
               <option key={option.id} value={option.nome}>
@@ -103,7 +103,7 @@ FormSelect.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.arrayOf(PropTypes.object),
 };
 
 FormSelect.defaultProps = {

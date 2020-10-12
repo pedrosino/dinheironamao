@@ -122,13 +122,14 @@ function Nova() {
             label="Categoria"
             name="categoria"
             value={values.categoria}
+            selectedValue={values.categoria}
             onChange={handleChange}
             options={categorias}
           />
 
           {/*<Autocomplete
             id="combo-box-demo"
-            options={['Alimentação','Mercado', 'Moradia']}
+            options={categorias.map((categoria) => ( categoria.nome ))}
             renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
           />*/}
 
