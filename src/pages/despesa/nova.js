@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import FormField from '../../components/FormField';
 import FormSelect from '../../components/FormSelect';
-import { getCurrentDate } from '../../utils/date';
+import { getCurrentDate, dateSave } from '../../utils/date';
 //import TextField from '@material-ui/core/TextField';
 //import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -79,7 +79,33 @@ function Nova() {
           ...dados,
           values,
         ]);*/
-        console.log(values);
+
+        fetch(`${URL_BACKEND}/despesa`, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            data: dateSave(values.data),
+            descricao: values.descricao,
+            valor: values.valor,
+            local: values.local,
+            observacao: values.observacao,
+            categoria_id: values.categoria === '' ? 0 : values.categoria
+          })
+        })
+          .then(response => response.json())
+          .then(item => {
+            console.log("item ", item);
+            /*if(Array.isArray(item)) {
+              this.props.addItemToState(item[0])
+              this.props.toggle()
+            } else {
+              console.log('failure')
+            }*/
+          })
+          .catch(err => console.log(err))
+
         clearForm();
         history.push('/');
       }}>

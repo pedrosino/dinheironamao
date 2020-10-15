@@ -64,6 +64,7 @@ server.get('/despesas', (req, res) => despesas.getTodasDespesas(req, res, db));
 server.get('/despesas/:id', (req, res) => despesas.getDespesaById(req, res, db));
 server.get('/categorias', (req, res) => categorias.getTodasCategorias(req, res, db));
 server.get('/categorias/:id', (req, res) => categorias.getCategoriaById(req, res, db));
+server.post('/despesa', (req, res) => despesas.postDespesa(req, res, db));
 
 
 //----------------------------------------------------------------------------

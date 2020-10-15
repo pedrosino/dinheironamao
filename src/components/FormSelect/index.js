@@ -80,10 +80,10 @@ function FormSelect({
           value={value}
           hasValue={hasValue}
         >
-          <option value=""></option>
+          <option value="0"></option>
           {
             options.map((option) => (
-              <option key={option.id} value={option.nome}>
+              <option key={option.id} value={option.id}>
                 {option.nome}
               </option>
             ))
@@ -107,7 +107,7 @@ FormSelect.propTypes = {
 };
 
 FormSelect.defaultProps = {
-  value: '',
+  value: 0,
   options: [],
 };
 

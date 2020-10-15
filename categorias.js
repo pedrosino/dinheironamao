@@ -28,7 +28,7 @@ const getCategoriaById = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err}))
 }
 
-const postTableData = (req, res, db) => {
+const postCategoria = (req, res, db) => {
   const { first, last, email, phone, location, hobby } = req.params
   const added = new Date()
   db('categorias').insert({first, last, email, phone, location, hobby, added})
@@ -39,7 +39,7 @@ const postTableData = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err.message}))
 }
 
-const putTableData = (req, res, db) => {
+const putCategoria = (req, res, db) => {
   const { id, first, last, email, phone, location, hobby } = req.params
   db('categorias').where({id}).update({first, last, email, phone, location, hobby})
     .returning('*')
@@ -49,7 +49,7 @@ const putTableData = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err.message}))
 }
 
-const deleteTableData = (req, res, db) => {
+const deleteCategoria = (req, res, db) => {
   const { id } = req.params
   db('categorias').where({id}).del()
     .then(() => {
@@ -61,7 +61,7 @@ const deleteTableData = (req, res, db) => {
 module.exports = {
   getTodasCategorias,
   getCategoriaById,
-  postTableData,
-  putTableData,
-  deleteTableData
+  postCategoria,
+  putCategoria,
+  deleteCategoria
 }

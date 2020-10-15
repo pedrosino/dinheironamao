@@ -16,7 +16,14 @@ function dateFormat(input, format) {
   return `${parts[2].split('T')[0]}/${parts[1]}${(format === 'long') ? `/${parts[0]}` : ''}`;
 }
 
+function dateSave(input, format) {
+  let parts = input.split('/');
+  
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
+}
+
 export {
   getCurrentDate, 
   dateFormat,
+  dateSave,
 };

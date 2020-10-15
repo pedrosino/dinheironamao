@@ -4,8 +4,8 @@ const getTodasDespesas = (req, res, db) => {
   const table = url.replace(/\\|\//g,'');*/
   ////db.select('*').from('despesas').orderBy('data')
   db('despesas')
-  .join('categorias', 'despesas.categoria_id', '=', 'categorias.id')
-  .select('despesas.data', 'despesas.valor', 'despesas.descricao', 'categorias.nome', 'categorias.cor').orderBy('despesas.data')
+  .leftJoin('categorias', 'despesas.categoria_id', '=', 'categorias.id')
+  .select('despesas.id', 'despesas.data', 'despesas.valor', 'despesas.descricao', 'categorias.nome', 'categorias.cor').orderBy('despesas.data')
   .then(items => {
       if(items.length){
         res.json(items)
@@ -31,10 +31,29 @@ const getDespesaById = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err.message}))
 }
 
-const postTableData = (req, res, db) => {
-  const { first, last, email, phone, location, hobby } = req.params
-  const added = new Date()
-  db('despesas').insert({first, last, email, phone, location, hobby, added})
+// Salva nova
+const postDespesa = (req, res, db) => {
+  const { data, descricao, valor, local, observacao, categoria_id } = req.body
+  //const added = new Date()
+
+  const query = db('despesas').insert({data, descricao, valor, local, observacao, categoria_id})
+  .returning('*');
+
+  console.log(query.toString());
+
+  //db('despesas').insert({data, descricao, valor, local, observacao, categoria_id})
+    //.returning('*')
+    query
+    .then(item => {
+      res.json(item)
+    })
+    .catch(err => res.status(400).json({dbError: err.message}))
+}
+
+// Atualiza
+const putDespesa = (req, res, db) => {
+  const { id, data, descricao, valor, local, observacao, categoria } = req.params
+  db('despesas').where({id}).update({data, descricao, valor, local, observacao, categoria})
     .returning('*')
     .then(item => {
       res.json(item)
@@ -42,17 +61,7 @@ const postTableData = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err.message}))
 }
 
-const putTableData = (req, res, db) => {
-  const { id, first, last, email, phone, location, hobby } = req.params
-  db('despesas').where({id}).update({first, last, email, phone, location, hobby})
-    .returning('*')
-    .then(item => {
-      res.json(item)
-    })
-    .catch(err => res.status(400).json({dbError: err.message}))
-}
-
-const deleteTableData = (req, res, db) => {
+const deleteDespesa = (req, res, db) => {
   const { id } = req.params
   db('despesas').where({id}).del()
     .then(() => {
@@ -64,7 +73,7 @@ const deleteTableData = (req, res, db) => {
 module.exports = {
   getTodasDespesas,
   getDespesaById,
-  postTableData,
-  putTableData,
-  deleteTableData
+  postDespesa,
+  putDespesa,
+  deleteDespesa
 }
