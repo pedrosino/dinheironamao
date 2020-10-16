@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import FormField from '../../components/FormField';
 import FormSelect from '../../components/FormSelect';
 import { getCurrentDate, dateSave } from '../../utils/date';
+import { saveFormat } from '../../utils/money';
 //import TextField from '@material-ui/core/TextField';
 //import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -88,7 +89,7 @@ function Nova() {
           body: JSON.stringify({
             data: dateSave(values.data),
             descricao: values.descricao,
-            valor: values.valor,
+            valor: saveFormat(values.valor),
             local: values.local,
             observacao: values.observacao,
             categoria_id: values.categoria === '' ? 0 : values.categoria
