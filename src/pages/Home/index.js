@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import { dateFormat } from '../../utils/date';
-import moneyFormat from '../../utils/money';
+import { moneyFormat } from '../../utils/money';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
 import './ultimas.css';
 
 function Home() {
@@ -53,6 +55,10 @@ function Home() {
                     <span>{despesa.descricao}</span>
                     <span className="categoria" style={{background: `#${despesa.cor ? despesa.cor : "ddd"}`}}>{despesa.nome}</span></div>
                   <div className="valor">{moneyFormat(despesa.valor)}</div>
+                  <Link className="icon" to={`/despesa/${despesa.id}`}>
+                    <FontAwesomeIcon icon={faEye} />
+                  </Link>
+                  <FontAwesomeIcon icon={faEdit} />
                 </div>
               ))}
         </div>
