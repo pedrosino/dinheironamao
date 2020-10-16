@@ -20,7 +20,16 @@ const getTodasDespesas = (req, res, db) => {
 const getDespesaById = (req, res, db) => {
   const { id } = req.params;
   
-  db.select('*').from('despesas').where({id})
+  /*const query = db.select('*').from('despesas').where({id});*/
+  
+  const query = db('despesas')
+    .leftJoin('categorias', 'despesas.categoria_id', '=', 'categorias.id')
+    .select('despesas.*', 'categorias.nome', 'categorias.cor')
+    .where('despesas.id', id)
+    
+    console.log("query: ", query.toString());
+
+    query
     .then(items => {
       if(items.length){
         res.json(items)
