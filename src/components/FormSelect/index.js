@@ -67,7 +67,7 @@ function FormSelect({
   label, name, value, onChange, options,
 }) {
 
-  const hasValue = Boolean(value !== 'undefined' && value.length);
+  const hasValue = Boolean(value !== '0' && value.length);
 
   return (
     <FormFieldWrapper>
