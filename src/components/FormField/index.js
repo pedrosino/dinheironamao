@@ -70,9 +70,8 @@ const Input = styled.input`
 function FormField({
   label, type, name, value, onChange,
 }) {
-  const tag = type === 'select' ? 'select' : 'input';
 
-  const hasValue = Boolean(value.length);
+  const hasValue = Boolean(value !== 'undefined' && value.length);
   
   return (
     <FormFieldWrapper>
@@ -80,7 +79,6 @@ function FormField({
         htmlFor={name}
       >
         <Input
-          as={tag}
           name={name}
           type={type}
           hasValue={hasValue}
@@ -88,8 +86,7 @@ function FormField({
           onChange={onChange}
         />
         <Label.Text>
-          {label}
-          :
+          {label}:
         </Label.Text>
       </Label>
     </FormFieldWrapper>

@@ -67,7 +67,7 @@ function FormSelect({
   label, name, value, onChange, options,
 }) {
 
-  const hasValue = Boolean(value.length);
+  const hasValue = Boolean(value !== 'undefined' && value.length);
 
   return (
     <FormFieldWrapper>
@@ -90,8 +90,7 @@ function FormSelect({
           }
         </Select>
         <Label.Text>
-          {label}
-          :
+          {label}:
         </Label.Text>
       </Label>
     </FormFieldWrapper>
