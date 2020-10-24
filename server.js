@@ -60,11 +60,11 @@ const despesas = require('./despesas');
 const categorias = require('./categorias');
 
 // Routes
-server.get('/despesas', (req, res) => despesas.getTodasDespesas(req, res, db));
-server.get('/despesas/:id', (req, res) => despesas.getDespesaById(req, res, db));
-server.get('/categorias', (req, res) => categorias.getTodasCategorias(req, res, db));
-server.get('/categorias/:id', (req, res) => categorias.getCategoriaById(req, res, db));
-server.post('/despesa', (req, res) => despesas.postDespesa(req, res, db));
+server.get('/api/despesas', (req, res) => despesas.getTodasDespesas(req, res, db));
+server.get('/api/despesas/:id', (req, res) => despesas.getDespesaById(req, res, db));
+server.get('/api/categorias', (req, res) => categorias.getTodasCategorias(req, res, db));
+server.get('/api/categorias/:id', (req, res) => categorias.getCategoriaById(req, res, db));
+server.post('/api/despesa', (req, res) => despesas.postDespesa(req, res, db));
 
 
 //----------------------------------------------------------------------------
