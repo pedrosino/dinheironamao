@@ -16,7 +16,7 @@ function Home() {
   : 'https://pedromoney.herokuapp.com';
 
   function getDespesas() {
-    return fetch(`${URL_BACKEND}/despesas`)
+    return fetch(`${URL_BACKEND}/api/despesas`)
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
           const response = await serverResponse.json();
@@ -49,21 +49,23 @@ function Home() {
 */}
           {despesas.length === 0 && (<div>Loading...</div>)}
           {despesas.map((despesa, index) => (
+                <Link key={despesa.id} to={`/despesa/${despesa.id}`}>
                 <div className="linha" key={index}>
                   <div className="data">{dateFormat(despesa.data.substring(0,10), 'short')}</div>
                   <div className="principal">
                     <span>{despesa.descricao}</span>
                     <span className="categoria" style={{background: `#${despesa.cor ? despesa.cor : "ddd"}`}}>{despesa.nome}</span></div>
                   <div className="valor">{moneyFormat(despesa.valor)}</div>
-                  <Link className="icon" to={`/despesa/${despesa.id}`}>
+                  {/*<Link className="icon" to={`/despesa/${despesa.id}`}>
                     <FontAwesomeIcon icon={faEye} />
                   </Link>
-                  <FontAwesomeIcon icon={faEdit} />
+          <FontAwesomeIcon icon={faEdit} />*/}
                 </div>
+                </Link>
               ))}
         </div>
         <Button as={Link} to="/despesa/nova" cor={'var(--green)'}>
-          Nova
+          Nova despesa
         </Button>
       </div>
       <div className="box">Oi</div>
