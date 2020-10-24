@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import About from '../src/pages/About';
 import Home from '../src/pages/Home';
 import NovaDespesa from '../src/pages/despesa/nova';
+import VerDespesa from '../src/pages/despesa/ver';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -12,6 +13,7 @@ ReactDOM.render(
     <Switch>
       {/*<Route path="/relatorio" component={Relatorio} />*/}
       <Route path="/despesa/nova" component={NovaDespesa} />
+      <Route path="/despesa/:id" component={VerDespesa} />
       <Route path="/about" component={About} />
       <Route path="/" component={Home} exact />
       <Route component={() => (<div>Não encontrado</div>)} />

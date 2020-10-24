@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import FormField from '../../components/FormField';
 import FormSelect from '../../components/FormSelect';
-import { getCurrentDate, dateSave } from '../../utils/date';
+import { getCurrentDate, dateSave, dateFormat } from '../../utils/date';
 import { saveFormat } from '../../utils/money';
+import { moneyFormat } from '../../utils/money';
 //import TextField from '@material-ui/core/TextField';
 //import Autocomplete from '@material-ui/lab/Autocomplete';
 import './despesa.css';
 
-function Nova() {
+function Ver() {
   const history = useHistory();
   const initialValues = {
     data: getCurrentDate("/"),
@@ -21,9 +22,62 @@ function Nova() {
     categoria_id: 0
   };
 
+  const { id } = useParams();
+
   //const { handleChange, values, clearForm } = useForm(initialValues);
 
-  const [values, setValues] = useState(initialValues);
+  const [values, setValues] = useState([]);
+
+  function parseValues(input) {
+    let output = [];
+
+    var key;
+    for (key in input) {
+      //treat values
+      let value = input[key];
+      if (value === null) {
+        output[key] = '';
+      }
+      else if (key === 'data') {
+        output[key] = dateFormat(value, "long");
+      }
+      else if (key === 'valor') {
+        output[key] = moneyFormat(value);
+      }
+      else {
+        output[key] = input[key];
+      }
+    }
+
+    return output;
+  }
+
+  // Busca dados
+  const URL_BACKEND = window.location.hostname.includes('localhost')
+  ? 'http://localhost:3001'
+  : 'https://pedromoney.herokuapp.com';
+
+  function getDespesa() {
+    return fetch(`${URL_BACKEND}/api/despesas/${id}`)
+      .then(async (serverResponse) => {
+        if (serverResponse.ok) {
+          const response = await serverResponse.json();
+          return response;
+        }
+        throw new Error('Não foi possível obter os dados');
+      });
+  }
+
+  useEffect(() => {      
+    getDespesa()
+      .then((dados) => {
+        let resultado = parseValues(dados[0]);
+        setValues(resultado);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   function setValue(key, value) {
     // key describes the field
@@ -45,10 +99,6 @@ function Nova() {
 
   // Busca categorias
   const [categorias, setCategorias] = useState([]);
-
-  const URL_BACKEND = window.location.hostname.includes('localhost')
-  ? 'http://localhost:3001'
-  : 'https://pedromoney.herokuapp.com';
 
   function getCategorias() {
     return fetch(`${URL_BACKEND}/api/categorias`)
@@ -74,7 +124,7 @@ function Nova() {
   return(
     <Layout>
       <div className="box despesa">
-        <p className="title">Nova despesa</p>
+        <p className="title">Ver despesa</p>
         <form className="form-nova-despesa" onSubmit={function handleSubmit(info) {
         info.preventDefault();
         /*setDados([
@@ -150,13 +200,14 @@ function Nova() {
             label="Categoria"
             name="categoria_id"
             value={String(values.categoria_id)}
-            selectedValue={String(values.categoria_id)}
+            selectedValue={values.categoria_id}
             onChange={handleChange}
             options={categorias}
           />
 
           {/*<Autocomplete
             id="combo-box-demo"
+            value={values.nome}
             options={categorias.map((categoria) => ( categoria.nome ))}
             renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
           />*/}
@@ -175,4 +226,4 @@ function Nova() {
   );
 }
 
-export default Nova;
+export default Ver;
