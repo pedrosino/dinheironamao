@@ -82,7 +82,7 @@ function Nova() {
           values,
         ]);*/
 
-        fetch(`${URL_BACKEND}/despesa`, {
+        fetch(`${URL_BACKEND}/api/despesa`, {
           method: 'post',
           headers: {
             'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ function Nova() {
             valor: saveFormat(values.valor),
             local: values.local,
             observacao: values.observacao,
-            categoria_id: values.categoria_id === '' ? 0 : values.categoria_id
+            categoria_id: values.categoria_id
           })
         })
           .then(response => response.json())
@@ -149,8 +149,8 @@ function Nova() {
           <FormSelect
             label="Categoria"
             name="categoria_id"
-            value={String(values.categoria_id)}
-            selectedValue={String(values.categoria_id)}
+            value={values.categoria_id}
+            selectedValue={values.categoria_id}
             onChange={handleChange}
             options={categorias}
           />

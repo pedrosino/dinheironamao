@@ -100,7 +100,7 @@ function FormSelect({
 FormSelect.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
 };
