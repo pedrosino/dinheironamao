@@ -11,7 +11,7 @@ import { saveFormat } from '../../utils/money';
 import './despesa.css';
 
 function Nova() {
-  const history = useHistory();
+  const history = useHistory({forceRefresh: true});
   const initialValues = {
     data: getCurrentDate("/"),
     descricao: '',
@@ -82,6 +82,7 @@ function Nova() {
           values,
         ]);*/
 
+        // make post request with the data
         fetch(`${URL_BACKEND}/api/despesa`, {
           method: 'post',
           headers: {
@@ -99,6 +100,11 @@ function Nova() {
           .then(response => response.json())
           .then(item => {
             console.log("item ", item);
+            clearForm();
+            history.push({
+              pathname: '/',
+              state: { item },
+            });
             /*if(Array.isArray(item)) {
               this.props.addItemToState(item[0])
               this.props.toggle()
@@ -108,8 +114,6 @@ function Nova() {
           })
           .catch(err => console.log(err))
 
-        clearForm();
-        history.push('/');
       }}>
           <FormField
             label="Data"

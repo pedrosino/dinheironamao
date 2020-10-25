@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import { dateFormat } from '../../utils/date';
@@ -35,6 +35,14 @@ function Home() {
         console.log(error);
       });
   }, []);
+
+  const location = useLocation();
+
+  console.log('Teste');
+  console.log('Location ', location.pathname);
+  const locationState = typeof(location.state) !== 'undefined'
+  if (locationState)  
+    console.log('Veio ', location.state.item);
 
   return(
     <Layout>
