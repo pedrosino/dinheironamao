@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 // App Middleware
-const whitelist = ['http://localhost:3000']
+const whitelist = ['http://localhost:3000','https://pedromoney.herokuapp.com']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
