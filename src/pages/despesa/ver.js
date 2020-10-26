@@ -132,12 +132,13 @@ function Ver() {
           values,
         ]);*/
 
-        fetch(`${URL_BACKEND}/despesa`, {
-          method: 'post',
+        fetch(`${URL_BACKEND}/api/despesa`, {
+          method: 'put',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
+            id: values.id,
             data: dateSave(values.data),
             descricao: values.descricao,
             valor: saveFormat(values.valor),
@@ -149,6 +150,11 @@ function Ver() {
           .then(response => response.json())
           .then(item => {
             console.log("item ", item);
+            clearForm();
+            history.push({
+              pathname: '/',
+              state: { item },
+            });
             /*if(Array.isArray(item)) {
               this.props.addItemToState(item[0])
               this.props.toggle()
@@ -158,8 +164,6 @@ function Ver() {
           })
           .catch(err => console.log(err))
 
-        clearForm();
-        history.push('/');
       }}>
           <FormField
             label="Data"

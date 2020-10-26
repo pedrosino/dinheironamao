@@ -42,13 +42,13 @@ const getDespesaById = (req, res, db) => {
 
 // Salva nova
 const postDespesa = (req, res, db) => {
-  const { data, descricao, valor, local, observacao, categoria_id } = req.body
+  const { data, descricao, valor, local, observacao, categoria_id } = req.body;
   //const added = new Date()
 
   const query = db('despesas').insert({data, descricao, valor, local, observacao, categoria_id})
   .returning('*');
 
-  console.log(query.toString());
+  console.log('Nova: ', query.toString());
 
   //db('despesas').insert({data, descricao, valor, local, observacao, categoria_id})
     //.returning('*')
@@ -61,9 +61,16 @@ const postDespesa = (req, res, db) => {
 
 // Atualiza
 const putDespesa = (req, res, db) => {
-  const { id, data, descricao, valor, local, observacao, categoria } = req.params
-  db('despesas').where({id}).update({data, descricao, valor, local, observacao, categoria})
-    .returning('*')
+  const { id, data, descricao, valor, local, observacao, categoria_id } = req.body;
+  
+  const query = db('despesas').where({id}).update({data, descricao, valor, local, observacao, categoria_id})
+  .returning('*');
+
+  console.log('Query update: ', query.toString());
+  
+  //db('despesas').where({id}).update({data, descricao, valor, local, observacao, categoria_id})
+  //  .returning('*')
+  query
     .then(item => {
       res.json(item)
     })

@@ -3,7 +3,7 @@ function moneyFormat(input) {
 }
 
 function saveFormat(input) {
-  return input.replace(',', '.');
+  return input.replace(',', '.').replace('R$ ', '');
 }
 
 export {
