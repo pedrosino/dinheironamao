@@ -126,45 +126,38 @@ function Ver() {
       <div className="box despesa">
         <p className="title">Ver despesa</p>
         <form className="form-nova-despesa" onSubmit={function handleSubmit(info) {
-        info.preventDefault();
-        /*setDados([
-          ...dados,
-          values,
-        ]);*/
+          info.preventDefault();
+          /*setDados([
+            ...dados,
+            values,
+          ]);*/
 
-        fetch(`${URL_BACKEND}/api/despesa`, {
-          method: 'put',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            id: values.id,
-            data: dateSave(values.data),
-            descricao: values.descricao,
-            valor: saveFormat(values.valor),
-            local: values.local,
-            observacao: values.observacao,
-            categoria_id: values.categoria_id === '' ? 0 : values.categoria_id
+          fetch(`${URL_BACKEND}/api/despesa`, {
+            method: 'put',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              id: values.id,
+              data: dateSave(values.data),
+              descricao: values.descricao,
+              valor: saveFormat(values.valor),
+              local: values.local,
+              observacao: values.observacao,
+              categoria_id: values.categoria_id === '' ? 0 : values.categoria_id
+            })
           })
-        })
-          .then(response => response.json())
-          .then(item => {
-            console.log("item ", item);
-            clearForm();
-            history.push({
-              pathname: '/',
-              state: { item },
-            });
-            /*if(Array.isArray(item)) {
-              this.props.addItemToState(item[0])
-              this.props.toggle()
-            } else {
-              console.log('failure')
-            }*/
-          })
-          .catch(err => console.log(err))
-
-      }}>
+            .then(response => response.json())
+            .then(item => {
+              console.log("item ", item);
+              clearForm();
+              history.push({
+                pathname: '/',
+                state: { item },
+              });
+            })
+            .catch(err => console.log(err))
+        }}>
           <FormField
             label="Data"
             type="text"

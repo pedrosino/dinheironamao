@@ -76,45 +76,39 @@ function Nova() {
       <div className="box despesa">
         <p className="title">Nova despesa</p>
         <form className="form-nova-despesa" onSubmit={function handleSubmit(info) {
-        info.preventDefault();
-        /*setDados([
-          ...dados,
-          values,
-        ]);*/
+          info.preventDefault();
+          /*setDados([
+            ...dados,
+            values,
+          ]);*/
 
-        // make post request with the data
-        fetch(`${URL_BACKEND}/api/despesa`, {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            data: dateSave(values.data),
-            descricao: values.descricao,
-            valor: saveFormat(values.valor),
-            local: values.local,
-            observacao: values.observacao,
-            categoria_id: values.categoria_id
+          // make post request with the data
+          fetch(`${URL_BACKEND}/api/despesa`, {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              data: dateSave(values.data),
+              descricao: values.descricao,
+              valor: saveFormat(values.valor),
+              local: values.local,
+              observacao: values.observacao,
+              categoria_id: values.categoria_id
+            })
           })
-        })
-          .then(response => response.json())
-          .then(item => {
-            console.log("item ", item);
-            clearForm();
-            history.push({
-              pathname: '/',
-              state: { item },
-            });
-            /*if(Array.isArray(item)) {
-              this.props.addItemToState(item[0])
-              this.props.toggle()
-            } else {
-              console.log('failure')
-            }*/
-          })
-          .catch(err => console.log(err))
+            .then(response => response.json())
+            .then(item => {
+              console.log("item ", item);
+              clearForm();
+              history.push({
+                pathname: '/',
+                state: { item },
+              });
+            })
+            .catch(err => console.log(err))
 
-      }}>
+        }}>
           <FormField
             label="Data"
             type="text"
