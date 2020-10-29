@@ -4,8 +4,8 @@ import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import { dateFormat } from '../../utils/date';
 import { moneyFormat } from '../../utils/money';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
 import './ultimas.css';
 
 function Home() {
@@ -57,22 +57,22 @@ function Home() {
 */}
           {despesas.length === 0 && (<div>Loading...</div>)}
           {despesas.map((despesa, index) => (
-                <Link key={despesa.id} to={`/despesa/${despesa.id}`}>
-                <div className="linha" key={index}>
-                  <div className="data">{dateFormat(despesa.data.substring(0,10), 'short')}</div>
-                  <div className="principal">
-                    <span>{despesa.descricao}</span>
-                    <span className="categoria" style={{background: `#${despesa.cor ? despesa.cor : "ddd"}`}}>{despesa.nome}</span></div>
-                  <div className="valor">{moneyFormat(despesa.valor)}</div>
-                  {/*<Link className="icon" to={`/despesa/${despesa.id}`}>
-                    <FontAwesomeIcon icon={faEye} />
-                  </Link>
-          <FontAwesomeIcon icon={faEdit} />*/}
-                </div>
+                <Link key={despesa.id} to={`/despesas/${despesa.id}`}>
+                  <div className="linha" key={index}>
+                    <div className="data">{dateFormat(despesa.data.substring(0,10), 'short')}</div>
+                    <div className="principal">
+                      <span>{despesa.descricao}</span>
+                      <span className="categoria" style={{background: `#${despesa.cor ? despesa.cor : "ddd"}`}}>{despesa.nome}</span></div>
+                    <div className="valor">{moneyFormat(despesa.valor)}</div>
+                    {/*<Link className="icon" to={`/despesa/${despesa.id}`}>
+                      <FontAwesomeIcon icon={faEye} />
+                    </Link>
+            <FontAwesomeIcon icon={faEdit} />*/}
+                  </div>
                 </Link>
               ))}
         </div>
-        <Button as={Link} to="/despesa/nova" cor={'var(--green)'}>
+        <Button as={Link} to="/despesas/nova" cor={'var(--green)'}>
           Nova despesa
         </Button>
       </div>

@@ -214,7 +214,7 @@ function Ver() {
               Salvar
             </Button>
             <Button as={Link} to="/" cor={'var(--orange)'}>
-              Cancelar
+              Voltar
             </Button>
           </div>
         </form>
