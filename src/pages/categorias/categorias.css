@@ -1,0 +1,7 @@
+.categoria-lista {
+  border-radius: 5px;
+  padding: 3px;
+  font-style: italic;
+  margin: 2px 0 2px 0;
+  width: max-content;
+}

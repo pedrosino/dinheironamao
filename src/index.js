@@ -6,6 +6,8 @@ import About from '../src/pages/About';
 import Home from '../src/pages/Home';
 import NovaDespesa from '../src/pages/despesas/nova';
 import VerDespesa from '../src/pages/despesas/ver';
+import Despesas from '../src/pages/despesas/index';
+import Categorias from '../src/pages/categorias/index';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -14,6 +16,8 @@ ReactDOM.render(
       {/*<Route path="/relatorio" component={Relatorio} />*/}
       <Route path="/despesas/nova" component={NovaDespesa} />
       <Route path="/despesas/:id" component={VerDespesa} />
+      <Route exact path="/despesas" component={Despesas} />
+      <Route exact path="/categorias" component={Categorias} />
       <Route path="/about" component={About} />
       <Route path="/" component={Home} exact />
       <Route component={() => (<div>Não encontrado</div>)} />

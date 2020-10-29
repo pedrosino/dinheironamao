@@ -4,11 +4,9 @@ import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import { dateFormat } from '../../utils/date';
 import { moneyFormat } from '../../utils/money';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
 import '../../ultimas.css';
 
-function Home() {
+function Index() {
   const [despesas, setDespesas] = useState([]);
 
   const URL_BACKEND = window.location.hostname.includes('localhost')
@@ -36,25 +34,11 @@ function Home() {
       });
   }, []);
 
-  const location = useLocation();
-
-  console.log('Teste');
-  console.log('Location ', location.pathname);
-  const locationState = typeof(location.state) !== 'undefined'
-  if (locationState)  
-    console.log('Veio ', location.state.item);
-
   return(
     <Layout>
       <div className="box">
         <div className="ultimas">
           <p className="title">Últimas despesas</p>
-          {/*<div className="linha">
-            <div className="data">Data</div>
-            <div className="principal">Descrição</div>
-            <div className="valor">Valor</div>
-          </div>
-*/}
           {despesas.length === 0 && (<div>Loading...</div>)}
           {despesas.map((despesa, index) => (
                 <Link key={despesa.id} to={`/despesas/${despesa.id}`}>
@@ -76,10 +60,8 @@ function Home() {
           Nova despesa
         </Button>
       </div>
-      <div className="box">Oi</div>
-      
     </Layout>
   );
 }
 
-export default Home;
+export default Index;
