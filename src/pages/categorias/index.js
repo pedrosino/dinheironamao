@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import './categorias.css';
 
 function Index() {
@@ -42,11 +44,12 @@ function Index() {
 
         {categorias.length === 0 && (<div>Loading...</div>)}
           {categorias.map((categoria, index) => (
-                <Link key={categoria.id} to={`/categorias/${categoria.id}`}>
-                  <div className="categoria-lista" style={{backgroundColor: `#${categoria.cor ? categoria.cor : ""}`}}>
-                    {categoria.nome}
-                  </div>
-                </Link>
+                <div key={index} className="categoria-lista" style={{backgroundColor: `${categoria.cor ? categoria.cor : ""}`}}>
+                  <Link key={categoria.id} to={`/categorias/${categoria.id}`}>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </Link>
+                  {categoria.nome}
+                </div>
               ))}
               <Button>Nova</Button>
       </div>

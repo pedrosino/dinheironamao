@@ -60,6 +60,10 @@ const Input = styled.input`
     transform: scale(.7) translateY(-10px);
   }
 
+  &[type='color'] + ${Label.Text} {
+    transform: scale(.7) translateY(-10px);
+  }
+
   ${({ hasValue }) => hasValue && css`
     &:not([type='color']) + ${Label.Text} {
       transform: scale(.7) translateY(-10px);
@@ -71,7 +75,7 @@ function FormField({
   label, type, name, value, onChange,
 }) {
 
-  const hasValue = Boolean(value !== 'undefined' && value.length);
+  const hasValue = Boolean(value !== null && value.length);
   
   return (
     <FormFieldWrapper>

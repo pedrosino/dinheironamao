@@ -104,13 +104,13 @@ function Ver() {
           />
           <FormField
             label="Cor"
-            type="text"
+            type="color"
             name="cor"
             value={values.cor}
             onChange={handleChange}
           />
 
-          Prévia: <div className="categoria-lista" style={{backgroundColor: `#${values.cor}`}}>
+          Prévia: <div className="categoria-lista" style={{backgroundColor: `${values.cor}`}}>
             {values.nome}
           </div>
 
