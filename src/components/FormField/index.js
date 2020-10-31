@@ -76,6 +76,8 @@ function FormField({
 }) {
 
   const hasValue = Boolean(value !== null && value.length);
+  if (value === null)
+    value = '';
   
   return (
     <FormFieldWrapper>
