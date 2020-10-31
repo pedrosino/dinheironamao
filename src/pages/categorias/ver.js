@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
@@ -23,7 +23,7 @@ function Ver() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  function getCategoria() {
+  const getCategoria = useCallback( () => {
     return fetch(`${URL_BACKEND}/api/categorias/${id}`)
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
@@ -32,7 +32,7 @@ function Ver() {
         }
         throw new Error('Não foi possível obter os dados');
       });
-  }
+  }, [URL_BACKEND, id]);
 
   useEffect(() => {      
     getCategoria()
@@ -42,7 +42,7 @@ function Ver() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [getCategoria]);
 
   function setValue(key, value) {
     // key describes the field

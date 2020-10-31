@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
@@ -13,7 +13,7 @@ function Index() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  function getDespesas() {
+  const getDespesas = useCallback( () => {
     return fetch(`${URL_BACKEND}/api/despesas`)
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
@@ -22,7 +22,7 @@ function Index() {
         }
         throw new Error('Não foi possível obter os dados');
       });
-  }
+  }, [URL_BACKEND]);
 
   useEffect(() => {      
     getDespesas()
@@ -32,7 +32,7 @@ function Index() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [getDespesas]);
 
   return(
     <Layout>

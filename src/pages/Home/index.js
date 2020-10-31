@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
@@ -15,7 +15,7 @@ function Home() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  function getDespesas() {
+  const getDespesas = useCallback( () => {
     return fetch(`${URL_BACKEND}/api/despesas`)
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
@@ -24,7 +24,7 @@ function Home() {
         }
         throw new Error('Não foi possível obter os dados');
       });
-  }
+  }, [URL_BACKEND]);
 
   useEffect(() => {      
     getDespesas()
@@ -34,7 +34,7 @@ function Home() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [getDespesas]);
 
   const location = useLocation();
 
