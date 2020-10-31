@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
@@ -50,7 +50,7 @@ function Nova() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  function getCategorias() {
+  const getCategorias = useCallback( () => {
     return fetch(`${URL_BACKEND}/api/categorias`)
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
@@ -59,7 +59,7 @@ function Nova() {
         }
         throw new Error('Não foi possível obter os dados');
       });
-  }
+  }, [URL_BACKEND]);
 
   useEffect(() => {      
     getCategorias()
@@ -69,7 +69,7 @@ function Nova() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [getCategorias]);
 
   return(
     <Layout>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +7,6 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import './categorias.css';
 
 function Index() {
-  const history = useHistory();
 
   // Busca categorias
   const [categorias, setCategorias] = useState([]);
@@ -16,7 +15,7 @@ function Index() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  function getCategorias() {
+  const getCategorias = useCallback( () => {
     return fetch(`${URL_BACKEND}/api/categorias`)
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
@@ -25,7 +24,7 @@ function Index() {
         }
         throw new Error('Não foi possível obter os dados');
       });
-  }
+  }, [URL_BACKEND]);
 
   useEffect(() => {      
     getCategorias()
@@ -35,7 +34,7 @@ function Index() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [getCategorias]);
 
   return(
     <Layout>
