@@ -110,7 +110,8 @@ function Ver() {
             onChange={handleChange}
           />
 
-          Prévia: <div className="categoria-lista" style={{backgroundColor: `${values.cor}`}}>
+          <p className="centro">Prévia:</p>
+          <div className="categoria-lista centro" style={{backgroundColor: `${values.cor}`}}>
             {values.nome}
           </div>
 
