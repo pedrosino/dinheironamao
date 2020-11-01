@@ -14,7 +14,7 @@ function Home() {
   const [erro, setErro] = useState([]);
 
   const URL_BACKEND = window.location.hostname.includes('localhost')
-  ? 'http://localhost:3001'
+  ? 'http://192.168.0.5:3001'
   : 'https://pedromoney.herokuapp.com';
 
   const getDespesas = useCallback( () => {

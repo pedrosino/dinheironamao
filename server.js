@@ -3,8 +3,6 @@ const server = express();
 const port = process.env.PORT || 3001;
 const path = require('path');
 
-
-
 /* Tutorial 2 */
 /* https://medium.com/@olinations/build-a-crud-template-using-react-bootstrap-express-postgres-9f84cc444438 */
 

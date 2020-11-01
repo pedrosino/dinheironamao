@@ -18,10 +18,10 @@ ReactDOM.render(
       {/*<Route path="/relatorio" component={Relatorio} />*/}
       <Route path="/despesas/nova" component={NovaDespesa} />
       <Route path="/despesas/:id" component={VerDespesa} />
-      <Route exact path="/despesas" component={Despesas} />
+      <Route path="/despesas" component={Despesas} />
       <Route path="/categorias/nova" component={NovaCategoria} />
       <Route path="/categorias/:id" component={VerCategoria} />
-      <Route exact path="/categorias" component={Categorias} />
+      <Route path="/categorias" component={Categorias} />
       <Route path="/about" component={About} />
       <Route path="/" component={Home} exact />
       <Route component={() => (<div>Não encontrado</div>)} />
