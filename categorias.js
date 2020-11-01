@@ -28,19 +28,27 @@ const getCategoriaById = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err}))
 }
 
+// Salva uma nova
 const postCategoria = (req, res, db) => {
-  const { first, last, email, phone, location, hobby } = req.params
-  const added = new Date()
-  db('categorias').insert({first, last, email, phone, location, hobby, added})
-    .returning('*')
+  const { nome, cor } = req.body;
+
+  const query = db('categorias').insert({nome, cor})
+  .returning('*');
+
+  console.log('Nova categoria: ', query.toString());
+
+  //db('categorias').insert({nome, cor})
+    //.returning('*')
+  query
     .then(item => {
       res.json(item)
     })
-    .catch(err => res.status(400).json({dbError: err.message}))
+    .catch(err => res.status(400).json({dbError: err.message}));
 }
 
+// Atualiza
 const putCategoria = (req, res, db) => {
-  const { id, first, last, email, phone, location, hobby } = req.params
+  const { id, first, last, email, phone, location, hobby } = req.body;
   db('categorias').where({id}).update({first, last, email, phone, location, hobby})
     .returning('*')
     .then(item => {
