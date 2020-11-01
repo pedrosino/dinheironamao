@@ -48,9 +48,16 @@ const postCategoria = (req, res, db) => {
 
 // Atualiza
 const putCategoria = (req, res, db) => {
-  const { id, first, last, email, phone, location, hobby } = req.body;
-  db('categorias').where({id}).update({first, last, email, phone, location, hobby})
-    .returning('*')
+  const { id, nome, cor } = req.body;
+
+  const query = db('categorias').where({id}).update({nome, cor})
+  .returning('*');
+
+  console.log('Atualiza categoria: ', query.toString());
+
+  //db('categorias').where({id}).update({nome, cor})
+  //  .returning('*')
+  query
     .then(item => {
       res.json(item)
     })

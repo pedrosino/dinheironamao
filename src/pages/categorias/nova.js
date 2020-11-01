@@ -12,37 +12,13 @@ function Ver() {
     cor: ''
   };
 
-  const { id } = useParams();
-
   //const { handleChange, values, clearForm } = useForm(initialValues);
 
-  const [values, setValues] = useState([]);
-
-  // Busca dados
   const URL_BACKEND = window.location.hostname.includes('localhost')
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  const getCategoria = useCallback( () => {
-    return fetch(`${URL_BACKEND}/api/categorias/${id}`)
-      .then(async (serverResponse) => {
-        if (serverResponse.ok) {
-          const response = await serverResponse.json();
-          return response;
-        }
-        throw new Error('Não foi possível obter os dados');
-      });
-  }, [URL_BACKEND, id]);
-
-  useEffect(() => {      
-    getCategoria()
-      .then((dados) => {
-        setValues(dados[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [getCategoria]);
+  const [values, setValues] = useState([]);
 
   function setValue(key, value) {
     // key describes the field
@@ -74,12 +50,11 @@ function Ver() {
           ]);*/
 
           fetch(`${URL_BACKEND}/api/categoria`, {
-            method: 'put',
+            method: 'post',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              id: values.id,
               nome: values.nome,
               cor: values.cor
             })

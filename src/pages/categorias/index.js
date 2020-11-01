@@ -50,7 +50,7 @@ function Index() {
                   {categoria.nome}
                 </div>
               ))}
-              <Button>Nova</Button>
+              <Button as={Link} to="/categorias/nova">Nova</Button>
       </div>
 
     </Layout>

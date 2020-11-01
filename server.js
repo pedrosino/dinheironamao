@@ -66,6 +66,8 @@ server.get('/api/categorias', (req, res) => categorias.getTodasCategorias(req, r
 server.get('/api/categorias/:id', (req, res) => categorias.getCategoriaById(req, res, db));
 server.post('/api/despesa', (req, res) => despesas.postDespesa(req, res, db));
 server.put('/api/despesa', (req, res) => despesas.putDespesa(req, res, db));
+server.post('/api/categoria', (req, res) => categorias.postCategoria(req, res, db));
+server.put('/api/categoria', (req, res) => categorias.putCategoria(req, res, db));
 
 
 //----------------------------------------------------------------------------
