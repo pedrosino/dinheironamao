@@ -11,6 +11,8 @@ import '../../ultimas.css';
 function Home() {
   const [despesas, setDespesas] = useState([]);
 
+  const [erro, setErro] = useState([]);
+
   const URL_BACKEND = window.location.hostname.includes('localhost')
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
@@ -32,7 +34,7 @@ function Home() {
         setDespesas(todas);
       })
       .catch((error) => {
-        console.log(error);
+        setErro(error.message);
       });
   }, [getDespesas]);
 
@@ -46,7 +48,11 @@ function Home() {
 
   return(
     <Layout>
-      <div className="box box-small">Menu</div>
+      <div style={{backgroundColor: '#ffa5a5',
+                   color: '#800'}}>{erro}</div>
+      <div className="box box-small">
+        Menu
+      </div>
       <div className="box box-medium">
         <div className="ultimas">
           <p className="title">Últimas despesas</p>
