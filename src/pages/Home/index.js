@@ -46,7 +46,8 @@ function Home() {
 
   return(
     <Layout>
-      <div className="box">
+      <div className="box box-small">Menu</div>
+      <div className="box box-medium">
         <div className="ultimas">
           <p className="title">Últimas despesas</p>
           {/*<div className="linha">
@@ -76,7 +77,6 @@ function Home() {
           Nova despesa
         </Button>
       </div>
-      <div className="box">Oi</div>
       
     </Layout>
   );
