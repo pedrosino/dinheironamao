@@ -68,7 +68,7 @@ server.post('/api/categoria', (req, res) => categorias.postCategoria(req, res, d
 server.put('/api/categoria', (req, res) => categorias.putCategoria(req, res, db));
 
 // Thanks again Jonatan
-const indexHtmlPath = path.resolve(__dirname, '../../client/build/index.html');
+const indexHtmlPath = path.resolve(__dirname, './build/index.html');
 
 server.get('/*', (req, res) => {
   res.sendFile(indexHtmlPath);
