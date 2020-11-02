@@ -41,7 +41,7 @@ function Ver() {
   return(
     <Layout>
       <div className="box">
-        <p className="title">Ver categoria</p>
+        <p className="title">Nova categoria</p>
         <form className="form-nova-despesa" onSubmit={function handleSubmit(info) {
           info.preventDefault();
           /*setDados([
@@ -91,7 +91,7 @@ function Ver() {
           </div>
 
           <div className="botoes">
-            <Button type="submit">
+            <Button type="submit" cor={'var(--green)'}>
               Salvar
             </Button>
             <Button as={Link} to="/categorias" cor={'var(--orange)'}>

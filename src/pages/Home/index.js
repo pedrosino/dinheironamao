@@ -79,7 +79,7 @@ function Home() {
                 </Link>
               ))}
         </div>
-        <Button as={Link} to="/despesas/nova" cor={'var(--green)'}>
+        <Button as={Link} to="/despesas/nova" >
           Nova despesa
         </Button>
       </div>

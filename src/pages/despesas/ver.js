@@ -210,7 +210,7 @@ function Ver() {
           />*/}
 
           <div className="botoes">
-            <Button type="submit">
+            <Button type="submit" cor={'var(--green)'}>
               Salvar
             </Button>
             <Button as={Link} to="/" cor={'var(--orange)'}>
