@@ -67,7 +67,12 @@ server.put('/api/despesa', (req, res) => despesas.putDespesa(req, res, db));
 server.post('/api/categoria', (req, res) => categorias.postCategoria(req, res, db));
 server.put('/api/categoria', (req, res) => categorias.putCategoria(req, res, db));
 
+// Thanks again Jonatan
+const indexHtmlPath = path.resolve(__dirname, '../../client/build/index.html');
 
+server.get('/*', (req, res) => {
+  res.sendFile(indexHtmlPath);
+});
 //----------------------------------------------------------------------------
 
 /* Tutorial 1
