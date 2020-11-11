@@ -41,7 +41,7 @@ const getDespesaById = (req, res, db) => {
 }
 
 // Salva nova
-const postDespesa = (req, res, db) => {
+const novaDespesa = (req, res, db) => {
   const { data, descricao, valor, local, observacao, categoria_id } = req.body;
   //const added = new Date()
 
@@ -60,7 +60,7 @@ const postDespesa = (req, res, db) => {
 }
 
 // Atualiza
-const putDespesa = (req, res, db) => {
+const atualizaDespesa = (req, res, db) => {
   const { id, data, descricao, valor, local, observacao, categoria_id } = req.body;
   
   const query = db('despesas').where({id}).update({data, descricao, valor, local, observacao, categoria_id})
@@ -77,7 +77,7 @@ const putDespesa = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err.message}))
 }
 
-const deleteDespesa = (req, res, db) => {
+const deletaDespesa = (req, res, db) => {
   const { id } = req.params
   db('despesas').where({id}).del()
     .then(() => {
@@ -89,7 +89,7 @@ const deleteDespesa = (req, res, db) => {
 module.exports = {
   getTodasDespesas,
   getDespesaById,
-  postDespesa,
-  putDespesa,
-  deleteDespesa
+  novaDespesa,
+  atualizaDespesa,
+  deletaDespesa
 }

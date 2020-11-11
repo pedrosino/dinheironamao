@@ -29,7 +29,7 @@ const getCategoriaById = (req, res, db) => {
 }
 
 // Salva uma nova
-const postCategoria = (req, res, db) => {
+const novaCategoria = (req, res, db) => {
   const { nome, cor } = req.body;
 
   const query = db('categorias').insert({nome, cor})
@@ -47,7 +47,7 @@ const postCategoria = (req, res, db) => {
 }
 
 // Atualiza
-const putCategoria = (req, res, db) => {
+const atualizaCategoria = (req, res, db) => {
   const { id, nome, cor } = req.body;
 
   const query = db('categorias').where({id}).update({nome, cor})
@@ -64,7 +64,7 @@ const putCategoria = (req, res, db) => {
     .catch(err => res.status(400).json({dbError: err.message}))
 }
 
-const deleteCategoria = (req, res, db) => {
+const deletaCategoria = (req, res, db) => {
   const { id } = req.params
   db('categorias').where({id}).del()
     .then(() => {
@@ -76,7 +76,7 @@ const deleteCategoria = (req, res, db) => {
 module.exports = {
   getTodasCategorias,
   getCategoriaById,
-  postCategoria,
-  putCategoria,
-  deleteCategoria
+  novaCategoria,
+  atualizaCategoria,
+  deletaCategoria
 }
