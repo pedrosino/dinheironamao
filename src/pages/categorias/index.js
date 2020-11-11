@@ -41,6 +41,7 @@ function Index() {
       <div className="box">
         <p className="title">Categorias</p>
 
+        <div className="lista">
         {categorias.length === 0 && (<div>Loading...</div>)}
           {categorias.map((categoria, index) => (
                 <div key={index} className="categoria-lista" style={{backgroundColor: `${categoria.cor ? categoria.cor : ""}`}}>
@@ -50,7 +51,8 @@ function Index() {
                   {categoria.nome}
                 </div>
               ))}
-              <Button as={Link} to="/categorias/nova">Nova</Button>
+        </div>
+        <Button as={Link} to="/categorias/nova">Nova</Button>
       </div>
 
     </Layout>

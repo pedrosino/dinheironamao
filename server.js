@@ -56,16 +56,31 @@ if (process.env.NODE_ENV === 'production') {
 
 const despesas = require('./despesas');
 const categorias = require('./categorias');
+const usuarios = require('./usuarios');
 
 // Routes
+// Despesas
+// Buscar
 server.get('/api/despesas', (req, res) => despesas.getTodasDespesas(req, res, db));
 server.get('/api/despesas/:id', (req, res) => despesas.getDespesaById(req, res, db));
+// Criar/atualizar
+server.post('/api/despesa', (req, res) => despesas.novaDespesa(req, res, db));
+server.put('/api/despesa', (req, res) => despesas.atualizaDespesa(req, res, db));
+
+// Categorias
+// Buscar
 server.get('/api/categorias', (req, res) => categorias.getTodasCategorias(req, res, db));
 server.get('/api/categorias/:id', (req, res) => categorias.getCategoriaById(req, res, db));
-server.post('/api/despesa', (req, res) => despesas.postDespesa(req, res, db));
-server.put('/api/despesa', (req, res) => despesas.putDespesa(req, res, db));
-server.post('/api/categoria', (req, res) => categorias.postCategoria(req, res, db));
-server.put('/api/categoria', (req, res) => categorias.putCategoria(req, res, db));
+// Criar/atualizar
+server.post('/api/categoria', (req, res) => categorias.novaCategoria(req, res, db));
+server.put('/api/categoria', (req, res) => categorias.atualizaCategoria(req, res, db));
+
+// Usuarios
+server.get('/api/users', (req, res) => usuarios.getTodos(req, res, db));
+server.post('/api/users/register', (req, res) => usuarios.registraUsuario(req, res, db));
+server.get('/api/users/:email', (req, res) => usuarios.getUsuarioByEmail(req, res, db));
+server.get('/api/users/:id', (req, res) => usuarios.getUsuarioById(req, res, db));
+
 
 // Thanks again Jonatan
 const indexHtmlPath = path.resolve(__dirname, './build/index.html');

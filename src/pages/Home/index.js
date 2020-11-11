@@ -14,7 +14,7 @@ function Home() {
   const [erro, setErro] = useState([]);
 
   const URL_BACKEND = window.location.hostname.includes('localhost')
-  ? 'http://192.168.0.5:3001'
+  ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
   const getDespesas = useCallback( () => {
@@ -48,8 +48,9 @@ function Home() {
 
   return(
     <Layout>
-      <div style={{backgroundColor: '#ffa5a5',
-                   color: '#800'}}>{erro}</div>
+      <div className="erros">
+        {erro}
+      </div>
       <div className="box box-small">
         Menu
       </div>

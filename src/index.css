@@ -25,6 +25,7 @@ body {
 
 :root {
   --lightGray: #F0F0F0;
+  --darkBlue: #002050;
   --mediumBlue: #2277c2;
   --lightBlue: #E0EAEF;
   --orange: #EC7C18;
@@ -137,6 +138,42 @@ a {
 @media (max-width: 800px) {
   .footer {
     font-size: 12px;
-    position: unset;
   }
+}
+
+/********** Erros *********************/
+.erros {
+  background-color: #ffbfb5;
+  color: #500;
+  position: relative;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.erros li, .erros span {
+  margin: 3px;
+}
+
+.erros li {
+  list-style-type: disc;
+  margin-left: 18px;
+}
+
+.mostra-erro {
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+
+.esconde-erro {
+  display: none;
+}
+
+/*****************Links********************/
+.link-centro {
+  color: var(--darkBlue);
+  position: relative;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
 }
