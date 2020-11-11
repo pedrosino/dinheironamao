@@ -10,6 +10,7 @@ const FormFieldWrapper = styled.div`
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 15px;
 `;
 
 const Label = styled.label``;
@@ -46,7 +47,7 @@ const Input = styled.input`
   border-bottom: 4px solid #53585D;
   
   padding: 16px 16px 0 16px;
-  margin-bottom: 25px;
+  /*margin-bottom: 25px;*/
   
   resize: none;
   border-radius: 4px;
