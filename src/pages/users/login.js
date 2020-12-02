@@ -51,8 +51,8 @@ function Login() {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              email: values.descricao,
-              senha: values.local,
+              email: values.email,
+              senha: values.senha,
             })
           })
             .then(response => response.json())

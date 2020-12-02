@@ -107,7 +107,7 @@ function Register() {
                 console.log("item ", item);
                 clearForm();
                 history.push({
-                  pathname: '/',
+                  pathname: '/users/login',
                   state: { item },
                 });
               })

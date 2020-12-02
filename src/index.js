@@ -11,6 +11,7 @@ import NovaCategoria from '../src/pages/categorias/nova';
 import VerCategoria from '../src/pages/categorias/ver';
 import Categorias from '../src/pages/categorias/index';
 import Register from '../src/pages/users/register';
+import Login from '../src/pages/users/login';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Route path="/categorias/:id" component={VerCategoria} />
       <Route path="/categorias" component={Categorias} />
       <Route path="/users/register" component={Register} />
+      <Route path="/users/login" component={Login} />
       <Route path="/about" component={About} />
       <Route path="/" component={Home} exact />
       <Route component={() => (<div>Não encontrado</div>)} />

@@ -18,6 +18,8 @@ const getTodos = (req, res, db) => {
 // Busca por id
 const getUsuarioById = (req, res, db) => {
   const { id } = req.params;
+
+  console.log('Buscando por id ', id);
   
   db.select('*').from('users').where({id})
     .then(items => {
@@ -33,6 +35,8 @@ const getUsuarioById = (req, res, db) => {
 // Busca por email
 const getUsuarioByEmail = (req, res, db) => {
   const { email } = req.params;
+
+  console.log('Buscando por email ', email);
   
   db.select('*').from('users').where({email})
     .then(items => {
@@ -64,8 +68,32 @@ const registraUsuario = (req, res, db) => {
       })
       .catch(err => res.status(400).json({dbError: err.message}));
   });
+}
 
-  
+// Login
+const logaUsuario = (req, res, db) => {
+  let { email, senha } = req.body;
+
+  console.log('Email: ', email);
+
+  bcrypt.hash(senha, 10, function(err, hash) {
+    senha = hash;
+    console.log('Senha: ', senha, ' - ', senha);
+
+    const query = db.select('*').from('users').where({email});
+
+    console.log('Logando usuario: ', query.toString());
+
+    query
+      .then(items => {
+        if(items.length){
+          //****console.log(JSON.parse(items).email)
+        } else {
+          res.json({dataExists: 'false'})
+        }
+      })
+      .catch(err => res.status(400).json({dbError: err}))
+  });
 }
 
 // Atualiza
@@ -100,6 +128,7 @@ module.exports = {
   getUsuarioById,
   getUsuarioByEmail,
   registraUsuario,
+  logaUsuario,
   atualizaUsuario,
   deletaUsuario
 }
