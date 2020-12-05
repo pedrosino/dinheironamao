@@ -38,6 +38,7 @@ function Home() {
       });
   }, [getDespesas]);
 
+  // verifica se a página anterior enviou informações
   const location = useLocation();
   console.log('Location ', location.pathname);
   const locationState = typeof(location.state) !== 'undefined'
@@ -48,6 +49,11 @@ function Home() {
     <Layout>
       <div className="erros">
         {erro}
+      </div>
+      <div className="mensagem sucesso">
+        { location.state.item.nome && (
+          <span>Bem vindo, {location.state.item.nome}</span>
+        ) }
       </div>
       <div className="box box-small">
         Menu

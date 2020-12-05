@@ -31,10 +31,6 @@ function Login() {
     setValue(name, value);
   }
 
-  function clearForm() {
-    setValues(initialValues);
-  }
-
   const URL_BACKEND = window.location.hostname.includes('localhost')
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
@@ -79,11 +75,21 @@ function Login() {
             .then(response => response.json())
             .then(item => {
               console.log("item ", item);
-              clearForm();
-              history.push({
-                pathname: '/',
-                state: { item },
-              });
+
+              if(item.notFound === 'true') {
+                let err = [{id: 'naoexiste', message: 'E-mail não encontrado'}];
+                setErros(err);
+                document.getElementById('email').focus();
+              } else if (item.badPassword === 'true') {
+                let err = [{id: 'senhaerrada', message: 'Senha incorreta'}];
+                document.getElementById('senha').focus();
+                setErros(err);
+              } else {
+                history.push({
+                  pathname: '/',
+                  state: { item },
+                });
+              }              
             })
             .catch(err => console.log(err))
 
@@ -103,6 +109,7 @@ function Login() {
             label="E-mail"
             type="email"
             name="email"
+            id="email"
             value={values.email}
             onChange={handleChange}
           />
@@ -110,6 +117,7 @@ function Login() {
             label="Senha"
             type="password"
             name="senha"
+            id="senha"
             value={values.senha}
             onChange={handleChange}
           />

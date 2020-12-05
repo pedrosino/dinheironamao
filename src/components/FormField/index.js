@@ -73,7 +73,7 @@ const Input = styled.input`
 `;
 
 function FormField({
-  label, type, name, value, onChange,
+  label, type, name, id, value, onChange,
 }) {
 
   const hasValue = Boolean(value !== null && value.length);
@@ -87,6 +87,7 @@ function FormField({
       >
         <Input
           name={name}
+          id={id}
           type={type}
           hasValue={hasValue}
           value={value}

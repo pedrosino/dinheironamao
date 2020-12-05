@@ -6,7 +6,7 @@ const getTodos = (req, res, db) => {
   const table = url.replace(/\\|\//g,'');*/
   db.select('*').from('users').orderBy('nome')
     .then(items => {
-      if(items.length){
+      if (items.length){
         res.json(items)
       } else {
         res.json({dataExists: 'false'})
@@ -23,7 +23,7 @@ const getUsuarioById = (req, res, db) => {
   
   db.select('*').from('users').where({id})
     .then(items => {
-      if(items.length){
+      if (items.length){
         res.json(items)
       } else {
         res.json({dataExists: 'false'})
@@ -40,7 +40,7 @@ const getUsuarioByEmail = (req, res, db) => {
   
   db.select('*').from('users').where({email})
     .then(items => {
-      if(items.length){
+      if (items.length){
         res.json(items)
       } else {
         res.json({dataExists: 'false'})
@@ -53,17 +53,18 @@ const getUsuarioByEmail = (req, res, db) => {
 const registraUsuario = (req, res, db) => {
   let { nome, email, senha } = req.body;
 
+  // busca no banco de dados pelo email
   db.select('*').from('users').where({email})
     .then(items => {
-      if(items.length){
+      if (items.length){
         //se já tem o email -> erro
         console.log('Já existe email');
-        res.json({alreadyRegistered: 'true'})
+        res.json({alreadyRegistered: 'true'});
       } else {
         //se não tem, faz o cadastro
         bcrypt.hash(senha, 10, function(err, hash) {
           senha = hash;
-          console.log('Senha: ', senha, ' - ', senha);
+          console.log('Senha: ', senha);
       
           const query = db('users').insert({nome, email, senha})
           .returning('*');
@@ -87,24 +88,29 @@ const logaUsuario = (req, res, db) => {
 
   console.log('Email: ', email);
 
-  bcrypt.hash(senha, 10, function(err, hash) {
-    senha = hash;
-    console.log('Senha: ', senha, ' - ', senha);
+  // busca no banco de dados pelo email
+  db.select('*').from('users').where({email})
+    .then(items => {
+      if (items.length){
+        //se encontrou o email, verifica a senha
+        bcrypt.compare(senha, items[0].senha, (err, isMatch) => {
+          if (err) {
+            console.log(err);
+          }
 
-    const query = db.select('*').from('users').where({email});
-
-    console.log('Logando usuario: ', query.toString());
-
-    query
-      .then(items => {
-        if(items.length){
-          //****console.log(JSON.parse(items).email)
-        } else {
-          res.json({dataExists: 'false'})
-        }
-      })
-      .catch(err => res.status(400).json({dbError: err}))
-  });
+          if (isMatch) {
+            res.json(items[0]);
+          } else {
+            res.json({badPassword: 'true'});
+          }
+        });
+      } else {
+        //se não tem o email -> erro
+        console.log('E-mail não encontrado');
+        res.json({notFound: 'true'});
+      }
+    })
+    .catch(err => res.status(400).json({dbError: err}));
 }
 
 // Atualiza
