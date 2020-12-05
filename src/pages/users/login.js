@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import FormField from '../../components/FormField';
@@ -14,6 +14,8 @@ function Login() {
   //const { handleChange, values, clearForm } = useForm(initialValues);
 
   const [values, setValues] = useState(initialValues);
+
+  const [erros, setErros] = useState([]);
 
   function setValue(key, value) {
     // key describes the field
@@ -37,9 +39,28 @@ function Login() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
+  // Verifica se a página anterior enviou um item
+  const location = useLocation();
+  console.log('Location ', location.pathname);
+  const locationState = typeof(location.state) !== 'undefined'
+  if (locationState)  
+    console.log('Veio ', location.state.item);
+
+  function closeMessage() {
+    document.getElementById('message').style.display = 'none';
+  }
+
   return(
     <Layout>
       <div className="box">
+        <div id="message" className="mensagem sucesso">
+          {locationState && (
+            <>
+              <span>Cadastro feito com sucesso!</span>
+              <span className="close-message" onClick={closeMessage}>x</span>
+            </>
+          )}
+        </div>
         <p className="title">Cadastro</p>
         <form className="" onSubmit={function handleSubmit(info) {
           info.preventDefault();
@@ -67,6 +88,17 @@ function Login() {
             .catch(err => console.log(err))
 
         }}>
+          <div className="erros">
+            {erros.length > 0 && (
+            <ul>
+              <span>Houve erro(s) no preenchimento:</span>
+              {erros.map((erro, index) => (
+                <li key={index}>{erro.message}</li>
+              ))}
+            </ul>
+            )}
+          </div>
+
           <FormField
             label="E-mail"
             type="email"

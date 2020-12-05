@@ -31,22 +31,22 @@ function Register() {
 
   // Valida formulário
   function validaForm() {
-    let erros = [];
+    let err = [];
 
     if (!values.nome || !values.email || !values.senha || !values.confirmaSenha) {
-      erros.push({id: 'vazio', message: 'Preencha todos os campos'});
+      err.push({id: 'vazio', message: 'Preencha todos os campos'});
     }
 
     if (values.senha.length < 8) {
-      erros.push({id: 'curta', message: 'A senha deve ter no mínimo 8 caracteres'});
+      err.push({id: 'curta', message: 'A senha deve ter no mínimo 8 caracteres'});
     }
 
     if (verificaSenhas(values.senha, values.confirmaSenha) === false)
-      erros.push({id: 'diferentes', message: 'As senhas não conferem'});
+      err.push({id: 'diferentes', message: 'As senhas não conferem'});
 
-    setErros(erros);
+    setErros(err);
 
-    console.log(erros.length);
+    return err.length;
   }
 
   function verificaSenhas(valor1, valor2) {
@@ -71,10 +71,6 @@ function Register() {
     }
   }
 
-  function clearForm() {
-    setValues(initialValues);
-  }
-
   const URL_BACKEND = window.location.hostname.includes('localhost')
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
@@ -86,10 +82,9 @@ function Register() {
         <form className="" onSubmit={function handleSubmit(info) {
           info.preventDefault();
 
-          validaForm();
+          let countErrors = validaForm();
 
-          if (erros.length === 0) {
-
+          if (countErrors === 0) {
             // make post request with the data
             fetch(`${URL_BACKEND}/api/users/register`, {
               method: 'post',
@@ -104,12 +99,15 @@ function Register() {
             })
               .then(response => response.json())
               .then(item => {
-                console.log("item ", item);
-                clearForm();
-                history.push({
-                  pathname: '/users/login',
-                  state: { item },
-                });
+                if(item.alreadyRegistered === 'true') {
+                  let err = [{id: 'existe', message: 'E-mail já cadastrado'}];
+                  setErros(err);
+                } else {
+                  history.push({
+                    pathname: '/users/login',
+                    state: { item },
+                  });
+                }                
               })
               .catch(err => console.log(err))
           }

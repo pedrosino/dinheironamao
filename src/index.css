@@ -151,6 +151,11 @@ a {
   margin-right: auto;
 }
 
+.erros ul {
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
 .erros li, .erros span {
   margin: 3px;
 }
@@ -167,6 +172,29 @@ a {
 
 .esconde-erro {
   display: none;
+}
+
+/*****************Mensagem*****************/
+
+.mensagem {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.mensagem span {
+  padding: 10px;
+}
+
+.sucesso {
+  background-color: var(--lightGreen);
+  color: var(--darkGreen);
+}
+
+.close-message {
+  cursor: pointer;
 }
 
 /*****************Links********************/

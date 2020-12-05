@@ -53,21 +53,32 @@ const getUsuarioByEmail = (req, res, db) => {
 const registraUsuario = (req, res, db) => {
   let { nome, email, senha } = req.body;
 
-  bcrypt.hash(senha, 10, function(err, hash) {
-    senha = hash;
-    console.log('Senha: ', senha, ' - ', senha);
-
-    const query = db('users').insert({nome, email, senha})
-    .returning('*');
-
-    console.log('Novo usuario: ', query.toString());
-
-    query
-      .then(item => {
-        res.json(item)
-      })
-      .catch(err => res.status(400).json({dbError: err.message}));
-  });
+  db.select('*').from('users').where({email})
+    .then(items => {
+      if(items.length){
+        //se já tem o email -> erro
+        console.log('Já existe email');
+        res.json({alreadyRegistered: 'true'})
+      } else {
+        //se não tem, faz o cadastro
+        bcrypt.hash(senha, 10, function(err, hash) {
+          senha = hash;
+          console.log('Senha: ', senha, ' - ', senha);
+      
+          const query = db('users').insert({nome, email, senha})
+          .returning('*');
+      
+          console.log('Novo usuario: ', query.toString());
+      
+          query
+            .then(item => {
+              res.json(item)
+            })
+            .catch(err => res.status(400).json({dbError: err.message}));
+        });
+      }
+    })
+    .catch(err => res.status(400).json({dbError: err}));
 }
 
 // Login

@@ -39,8 +39,6 @@ function Home() {
   }, [getDespesas]);
 
   const location = useLocation();
-
-  console.log('Teste');
   console.log('Location ', location.pathname);
   const locationState = typeof(location.state) !== 'undefined'
   if (locationState)  
