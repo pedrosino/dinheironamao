@@ -7,6 +7,7 @@ import FormSelect from '../../components/FormSelect';
 import { getCurrentDate, dateSave, dateFormat } from '../../utils/date';
 import { saveFormat } from '../../utils/money';
 import { moneyFormat } from '../../utils/money';
+import { UserContext } from '../../context.js';
 //import TextField from '@material-ui/core/TextField';
 //import Autocomplete from '@material-ui/lab/Autocomplete';
 import './despesa.css';
@@ -121,10 +122,15 @@ function Ver() {
       });
   }, [getCategorias]);
 
+  //-------
+  // Por que precisa do colchete?
+  const [usuario] = React.useContext(UserContext);
+
   return(
     <Layout>
       <div className="box despesa">
         <p className="title">Ver despesa</p>
+        <p>Hello {usuario}</p>
         <form className="form-nova-despesa" onSubmit={function handleSubmit(info) {
           info.preventDefault();
           /*setDados([

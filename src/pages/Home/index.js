@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import { dateFormat } from '../../utils/date';
 import { moneyFormat } from '../../utils/money';
-import { user } from '../../context.js';
+import { UserContext } from '../../context.js';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
 import '../../ultimas.css';
@@ -39,8 +39,7 @@ function Home() {
       });
   }, [getDespesas]);
 
-  const usuario = useContext(user);
-  const { dispatch } = usuario;
+  const [usuario] = React.useContext(UserContext);
 
   // verifica se a página anterior enviou informações
   const location = useLocation();
@@ -49,9 +48,9 @@ function Home() {
   if (locationState) {
     console.log('Veio ', location.state.item);
 
-    if (location.state.item.nome) {
+    /*if (location.state.item.nome) {
       dispatch(location.state.item.id);
-    }
+    }*/
   }
 
   return(
@@ -66,7 +65,7 @@ function Home() {
       </div>
       <div className="box box-small">
         Menu<br/>
-        {usuario.state}
+        Hi {usuario}
       </div>
       <div className="box box-medium">
         <div className="ultimas">

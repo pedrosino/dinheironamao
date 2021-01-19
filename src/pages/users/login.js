@@ -3,6 +3,8 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import FormField from '../../components/FormField';
+import { UserContext } from '../../context';
+//import { AuthContext } from '../../App.js';
 
 function Login() {
   const history = useHistory({forceRefresh: true});
@@ -46,6 +48,8 @@ function Login() {
     document.getElementById('message').style.display = 'none';
   }
 
+  const [usuario, setUsuario] = React.useContext(UserContext);
+  
   return(
     <Layout>
       <div className="box">
@@ -85,10 +89,17 @@ function Login() {
                 document.getElementById('senha').focus();
                 setErros(err);
               } else {
+                //dispatch action to context
+                /*dispatch({
+                  type: "LOGIN",
+                  payload: item
+                })*/
+                setUsuario(item.nome);
                 history.push({
                   pathname: '/',
                   state: { item },
                 });
+                
               }              
             })
             .catch(err => console.log(err))

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback, useContext  } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from '../../components/Button';
 import { dateFormat } from '../../utils/date';
 import { moneyFormat } from '../../utils/money';
-import { user } from '../../context.js';
+import { UserContext } from '../../context.js';
 import '../../ultimas.css';
 
 function Index() {
@@ -35,13 +35,13 @@ function Index() {
       });
   }, [getDespesas]);
 
-  const usuario = useContext(user);
-
+  const [usuario] = React.useContext(UserContext);
+  
   return(
     <Layout>
       <div className="box">
         <div className="ultimas">
-          <p className="title">Últimas despesas - {usuario.state}</p>
+          <p className="title">Últimas despesas - {usuario}</p>
           {despesas.length === 0 && (<div>Loading...</div>)}
           {despesas.map((despesa, index) => (
                 <Link key={despesa.id} to={`/despesas/${despesa.id}`}>

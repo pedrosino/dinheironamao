@@ -1,22 +1,8 @@
-import React, { createContext, useReducer } from 'react';
+import React from 'react';
 
-const user = createContext(0);
+//https://stackoverflow.com/questions/54738681/how-to-change-context-value-while-using-react-hook-of-usecontext
 
-const { Provider } = user;
+export const UserContext = React.createContext();
 
-const StateProvider = ( { children } ) => {
-  const [state, dispatch] = useReducer((state, value) => {
-    /*switch(action.type) {
-      case 'action description':
-        const newState = 'hello';// do something with the action
-        return newState;
-      default:
-        throw new Error();
-    };*/
-    return value;
-  }, 0);
-
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
-};
-
-export { user, StateProvider };
+//https://flaviocopes.com/react-update-while-rendering-different-component/
+//erro?
