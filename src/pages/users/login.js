@@ -48,6 +48,7 @@ function Login() {
     document.getElementById('message').style.display = 'none';
   }
 
+  // Busca o contexto do usuario
   const [usuario, setUsuario] = React.useContext(UserContext);
   
   return(
@@ -94,7 +95,10 @@ function Login() {
                   type: "LOGIN",
                   payload: item
                 })*/
-                setUsuario(item.nome);
+                localStorage.setItem('userid', item.id);
+                localStorage.setItem('usuario', item.nome);
+                //setUsuario(item.nome);
+                setUsuario(item.id);
                 history.push({
                   pathname: '/',
                   state: { item },

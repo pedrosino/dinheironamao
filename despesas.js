@@ -3,10 +3,17 @@ const getTodasDespesas = (req, res, db) => {
   /*const url = String(req.url);
   const table = url.replace(/\\|\//g,'');*/
   ////db.select('*').from('despesas').orderBy('data')
-  db('despesas')
+
+  const { user } = req.query;
+
+  const query = db('despesas')
   .leftJoin('categorias', 'despesas.categoria_id', '=', 'categorias.id')
   .select('despesas.id', 'despesas.data', 'despesas.valor', 'despesas.descricao', 'categorias.nome', 'categorias.cor').orderBy('despesas.data')
-  .then(items => {
+  .where('despesas.user_id', user);
+
+  console.log("Todas ", query.toString());
+
+  query.then(items => {
       if(items.length){
         res.json(items)
       } else {
@@ -27,7 +34,7 @@ const getDespesaById = (req, res, db) => {
     .select('despesas.*', 'categorias.nome', 'categorias.cor')
     .where('despesas.id', id)
     
-    console.log("query: ", query.toString());
+    console.log("Despesa-id: ", query.toString());
 
     query
     .then(items => {

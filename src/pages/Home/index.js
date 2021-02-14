@@ -14,12 +14,19 @@ function Home() {
 
   const [erro, setErro] = useState([]);
 
+  // Busca o contexto do usuario
+  const [usuario] = React.useContext(UserContext);
+  const logado = usuario !== 0;
+  console.log('Logado: ', logado);
+
   const URL_BACKEND = window.location.hostname.includes('localhost')
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
   const getDespesas = useCallback( () => {
-    return fetch(`${URL_BACKEND}/api/despesas`)
+    return fetch(`${URL_BACKEND}/api/despesas?user=${encodeURIComponent(usuario)}`, {
+      method: 'get',
+    })
       .then(async (serverResponse) => {
         if (serverResponse.ok) {
           const response = await serverResponse.json();
@@ -27,19 +34,24 @@ function Home() {
         }
         throw new Error('Não foi possível obter os dados');
       });
-  }, [URL_BACKEND]);
+  }, [URL_BACKEND, usuario]);
 
   useEffect(() => {      
     getDespesas()
       .then((todas) => {
-        setDespesas(todas);
+        if(todas.dataExists !== 'false')
+          setDespesas(todas);
+        else
+          setDespesas(['']);
       })
       .catch((error) => {
         setErro(error.message);
       });
   }, [getDespesas]);
 
-  const [usuario] = React.useContext(UserContext);
+  
+  // Busca nome do usuario salvo no localStorage
+  const nome = localStorage.getItem('usuario');
 
   // verifica se a página anterior enviou informações
   const location = useLocation();
@@ -65,7 +77,7 @@ function Home() {
       </div>
       <div className="box box-small">
         Menu<br/>
-        Hi {usuario}
+        Hi {usuario}! Seu nome é {nome}.
       </div>
       <div className="box box-medium">
         <div className="ultimas">
@@ -77,7 +89,9 @@ function Home() {
           </div>
 */}
           {despesas.length === 0 && (<div>Loading...</div>)}
-          {despesas.map((despesa, index) => (
+          {despesas.length === 1 ? (<div>Nenhuma despesa encontrada</div>)
+          :
+          despesas.map((despesa, index) => (
                 <Link key={despesa.id} to={`/despesas/${despesa.id}`}>
                   <div className="linha" key={index}>
                     <div className="data">{dateFormat(despesa.data.substring(0,10), 'short')}</div>

@@ -15,7 +15,7 @@ import Login from '../src/pages/users/login';
 import { UserContext } from './context.js';
 
 function App() {
-  const [usuario, setUsuario] = useState(0);
+  const [usuario, setUsuario] = useState(localStorage.getItem('userid') || 0);
 
   return (
     /*<div className="App">
