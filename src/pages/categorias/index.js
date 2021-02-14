@@ -36,7 +36,7 @@ function Index() {
       });
   }, [getCategorias]);
 
-  return(
+  return (
     <Layout>
       <div className="box">
         <p className="title">Categorias</p>

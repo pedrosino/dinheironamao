@@ -75,7 +75,7 @@ function Register() {
   ? 'http://localhost:3001'
   : 'https://pedromoney.herokuapp.com';
 
-  return(
+  return (
     <Layout>
       <div className="box">
         <p className="title">Cadastro</p>

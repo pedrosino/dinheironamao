@@ -37,7 +37,7 @@ function Index() {
 
   const [usuario] = React.useContext(UserContext);
   
-  return(
+  return (
     <Layout>
       <div className="box">
         <div className="ultimas">

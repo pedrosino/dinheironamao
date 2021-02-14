@@ -65,7 +65,7 @@ function Home() {
     }*/
   }
 
-  return(
+  return (
     <Layout>
       <div className="erros">
         {erro}

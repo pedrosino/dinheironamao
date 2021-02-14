@@ -14,7 +14,7 @@ function toggleMenu() {
 }
 
 function Menu() {
-  return(
+  return (
     <div className="header">
       <Link to="/">
         PedroMoney

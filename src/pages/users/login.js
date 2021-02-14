@@ -51,7 +51,7 @@ function Login() {
   // Busca o contexto do usuario
   const [usuario, setUsuario] = React.useContext(UserContext);
   
-  return(
+  return (
     <Layout>
       <div className="box">
         <div id="message" className="mensagem sucesso">

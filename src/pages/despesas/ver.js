@@ -126,7 +126,7 @@ function Ver() {
   // Por que precisa do colchete?
   const [usuario] = React.useContext(UserContext);
 
-  return(
+  return (
     <Layout>
       <div className="box despesa">
         <p className="title">Ver despesa</p>

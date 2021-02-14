@@ -38,7 +38,7 @@ function Ver() {
     setValues(initialValues);
   }
 
-  return(
+  return (
     <Layout>
       <div className="box">
         <p className="title">Nova categoria</p>
